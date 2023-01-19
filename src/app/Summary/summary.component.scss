@@ -1,0 +1,19 @@
+
+
+.valueLableSection{
+  display: flex;
+    gap: 2px;
+    flex-direction: column;
+}
+
+  .dataValues{
+    color: #43425D; font-size: 25px;
+    font: normal normal bold 25px/17px Montserrat;
+  }
+  .dataValuesLable{
+    text-align: center;
+font: normal normal 600 16px/19px Lato;
+letter-spacing: 0.4px;
+color: #3E3E3E;
+opacity: 1;
+  }

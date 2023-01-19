@@ -1,0 +1,63 @@
+
+<aside class="main-sidebar ">
+  <div style="background-color: #43425D; padding: 0.78rem; text-align: center;">
+<!-- <h5 style="color: #FFFFFF;">Seshaasai </h5> -->
+
+    <div  style="border: 0;" >
+
+
+
+      <img src="../../assets/SESHASAI-LOGO-OCT-2020.png" alt="seshaasai"  style="opacity: .8; width: 80%;">
+      <!-- <span class="brand-text font-weight-light">Software</span> -->
+
+    </div>
+      
+      
+  </div>
+    
+      <!-- Sidebar -->
+      <div class="sidebar"  style="background-color: #F1F2F2">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex flex-column">
+          <!-- <div class="image">
+            <img [src]="userImage" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">{{userName}}</a>
+          </div> -->
+         
+
+          <div style="gap: 1rem;"  class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" [routerLink]="['dashboard']" role="tab" aria-controls="v-pills-home" aria-selected="true"><i style="margin-right: 10px;" class="fa-solid fa-square"></i> Dashboard</a>
+            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"  [routerLink]="['users']" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i style="margin-right: 10px;" class="fa-solid fa-square"></i> Users</a>
+            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" [routerLink]="['roles']" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i style="margin-right: 10px;" class="fa-solid fa-square"></i> Roles</a>
+            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" [routerLink]="['userRoles']" role="tab" aria-controls="v-pills-settings" aria-selected="false"><i style="margin-right: 10px;" class="fa-solid fa-square"></i> User Roles</a>
+          </div>
+
+
+        </div>
+
+       
+   
+
+        <!-- SidebarSearch Form -->
+        <!-- <div class="form-inline">
+          <div class="input-group" data-widget="sidebar-search">
+            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+              <button class="btn btn-sidebar">
+                <i class="fas fa-search fa-fw"></i>
+              </button>
+            </div>
+          </div>
+        </div> -->
+    
+   
+    
+
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+      </aside>
+    
+      <router-outlet></router-outlet>

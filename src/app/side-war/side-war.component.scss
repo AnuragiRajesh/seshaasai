@@ -1,0 +1,28 @@
+// .jjjj{
+//     .selectedDiv{
+//         background-color: #E6E7E8; margin: auto ; border-radius: 10px; opacity: 1; width: 225px;
+//               height: 55px; text-align: center;
+              
+//     }   
+//     div{
+//         color: #43425D; margin-top: 10px;
+//       }
+// }
+
+button{
+    border: none ;
+    background-color: none
+    ;
+}
+a{
+    color: #43425D; font: normal normal medium 14px/17px Montserrat; font-weight: bolder;
+}
+
+.nav-pills .nav-link.active{
+    color: #43425D;
+    background-color: #E6E7E8;
+    height: 45px;
+}
+.nav-pills .nav-link:not(.active):hover {
+    color: #43425D;
+}
