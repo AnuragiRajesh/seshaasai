@@ -24,7 +24,6 @@ import { dashboardTableColumns} from '../../../_interfaces/appInterfaces';
 
 export class TableComponent implements OnInit, AfterViewInit {
 
-  pageSizes = [3, 5, 7];
   public data: any
   @Input() slectedItemsFromSlectionComponent: any = <any>[]
   predefineFields:Array<string>=['Date', 'Region', 'State', 'Branch ID',]
@@ -33,7 +32,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   displayedColumns = [...this.displayedColumns1, 'action'];
   dataSource: MatTableDataSource<dashboardTableColumns>;
   @ViewChild('MatPaginator', { static: false }) paginator: MatPaginator;
-  @ViewChild('sort', { static: false }) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
 
   expandedElement: any;
 
@@ -46,7 +45,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
 
-
+    this.dataSource.sort = this.sort;
     this.service.availableData().subscribe((res: any) => {
 
       res.forEach((obj: any) => renameKey(obj, 'Branch_Recon_Completed', 'Branch Recon Completed'));
@@ -66,6 +65,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     console.log(!this.showComponent, "testing")
   }
   ngOnChanges(changes: any) {
+    this.dataSource.sort = this.sort;
     console.log(this.slectedItemsFromSlectionComponent, "lllllllllllllll", this.data)
 
 
@@ -415,6 +415,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
       this.dataSource.data = this.data
     }
+    this.dataSource.sort = this.sort;
 
   }
 

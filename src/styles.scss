@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+.exportButton{
+    width: 120px; height: 35px; border-radius: 10px; border: 1px solid #43425D; margin-bottom: 15px;
+}
+.addNewRoleAndUserButton{
+    text-align: right; background-color: #FFFFFF;  text-decoration: underline; 
+    font: normal normal medium 16px/17px Montserrat;
+    letter-spacing: 0.4px;
+    color: #43425D;
+    opacity: 1;
+}
+
+.matIconButton{
+    text-decoration: none; border: none; background-color: #FFFFFF;
+}

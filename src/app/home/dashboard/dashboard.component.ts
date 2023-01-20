@@ -118,6 +118,7 @@ export class DashboardComponent {// public showTable = false
   }
   onItemDeSelectOfRegion(item: any) {
     if (this.form.value.region.length == 0) {
+      this.state = ''
       this.form.value.region = ''
       return
     }

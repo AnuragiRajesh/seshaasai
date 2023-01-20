@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit ,AfterViewInit{
   displayedColumns:string[] = [...this.displayedColumns1, 'action'];
   dataSource= new MatTableDataSource<usersTableColumns>
   @ViewChild('paginatorPageSize') paginatorPageSize: MatPaginator;
-  @ViewChild('sort', { static: false }) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
   pageSizes = [3, 5, 7];
   expandedElement: any;
   constructor(private service: DataService) {

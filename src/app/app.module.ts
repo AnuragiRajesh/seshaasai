@@ -16,6 +16,7 @@ import { MatTableModule } from '@angular/material/table' ;
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CdkTableModule } from '@angular/cdk/table';
+import { MatSortModule } from '@angular/material/sort';
 import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
@@ -49,6 +50,7 @@ import { UserRolesComponent } from './home/user-roles/user-roles.component';
     MatTableModule,
     MatIconModule ,
     MatTableModule ,
+    MatSortModule,
     CdkTableModule,
     MatPaginatorModule,
     NgMultiSelectDropDownModule.forRoot()

@@ -1,10 +1,13 @@
+
+<div class="content-wrapper" style="background-color: #FFFFFF;"> 
+    <div  class="m-4" >
+
 <div style=" display: flex;  justify-content: leftight;">
 
-<button style=" width: 120px; height: 35px; border-radius: 10px; border: 1px solid #43425D; margin-bottom: 15px;
-" mat-raised-button color="primary"   >Export as Excel</button></div>
+<button class="exportButton" mat-raised-button color="primary"   >Export as Excel</button></div>
 <div  class="example-container mat-elevation-z8" #Table>
 	<!-- <div>{{data[0]}}</div>  -->
-	<mat-table  #table [dataSource]="dataSource" multiTemplateDataRows     >
+	<mat-table  #table [dataSource]="dataSource" multiTemplateDataRows matSort  class="mat-elevation-z8"  >
 		  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns1">
 			<mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef mat-sort-header> {{column}} </mat-header-cell>
 			<mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
@@ -18,7 +21,7 @@
 			
 		</ng-container>
 		<ng-container matColumnDef="action" >
-			<mat-header-cell style="background-color: #F4F4F4;"  *matHeaderCellDef mat-sort-header> Know more </mat-header-cell>
+			<mat-header-cell style="background-color: #F4F4F4;"  *matHeaderCellDef > Know more </mat-header-cell>
 			<mat-cell *matCellDef="let element">
 				<button  mat-icon-button *ngIf="expandedElement != element" style="text-decoration: none; border: none; background-color: #FFFFFF;"
                 [class.expanded]="expandedElement == element"
@@ -38,9 +41,9 @@
 			[@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'" style="overflow: hidden">
 		</mat-row>
 	</mat-table>
-	<mat-paginator class="paginator" #MatPaginator pageSize="4"></mat-paginator>
+	<mat-paginator class="paginator" #MatPaginator  showFirstLastButtons pageSize="4"></mat-paginator>
 </div>
-
+</div></div>
 <!-- <button (click)="bb()" >click</button> -->
 	
 

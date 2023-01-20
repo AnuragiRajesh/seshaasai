@@ -16,7 +16,7 @@ export class UserRolesComponent implements OnInit, AfterViewInit {
   displayedColumns = [...this.displayedColumns1, 'action'];
   dataSource: any
   @ViewChild('MatPaginator', { static: false }) paginator!: MatPaginator;
-  @ViewChild('sort', { static: false }) sort!: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
 
   expandedElement: any;
   constructor(private service: DataService) {
