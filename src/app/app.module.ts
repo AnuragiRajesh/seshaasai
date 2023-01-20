@@ -3,11 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SideWarComponent } from './side-war/side-war.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { SelectionComponent } from './selection/selection.component';
-import { SummaryComponent } from './Summary/summary.component';
-import { TableComponent } from './table/table.component';
+import { SideWarComponent } from './home/dashboard/side-war/side-war.component';
+import { NavBarComponent } from './home/dashboard/nav-bar/nav-bar.component';
+import { SummaryComponent } from './home/dashboard/Summary/summary.component';
+import { TableComponent } from './home/dashboard/table/table.component';
 import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS,} from '@angular/material/form-field';
@@ -28,7 +27,6 @@ import { UserRolesComponent } from './home/user-roles/user-roles.component';
     AppComponent,
     SideWarComponent,
     NavBarComponent,
-    SelectionComponent,
     SummaryComponent,
     LoginComponent,
     TableComponent,

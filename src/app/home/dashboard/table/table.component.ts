@@ -3,8 +3,8 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { MatTableDataSource, } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { DataService } from '../customServices/data.service';
-import { dashboardTableColumns} from '../_interfaces/appInterfaces';
+import { DataService } from '../../../customServices/data.service';
+import { dashboardTableColumns} from '../../../_interfaces/appInterfaces';
 
 
 @Component({
