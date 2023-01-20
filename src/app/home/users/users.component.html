@@ -1,2 +1,67 @@
-<p>users works!</p>
-<router-outlet></router-outlet>
+<div class="content-wrapper" style="background-color: #FFFFFF; "> 
+    <div style="margin: 1.5rem;   align-self: center;" >
+<div style="display: flex; flex-direction: row; justify-content: space-between; " >
+    <div style="text-align: left;
+    font: normal normal bold 20px/17px Montserrat;
+    letter-spacing: 0.5px;
+    color: #43425D;
+    opacity: 1;">Users</div>
+   <button style="text-align: right; background-color: #FFFFFF; text-decoration: underline;"><i class="fa-light fa-plus"></i> <a style="
+
+    font: normal normal medium 16px/17px Montserrat;
+    letter-spacing: 0.4px;
+    color: #43425D;
+    opacity: 1;">Add new user</a></button>
+   
+</div>
+<hr>
+<div style=" display: flex;  justify-content: right;">
+
+    <button style=" width: 120px; height: 35px; border-radius: 10px; border: 1px solid #43425D; margin-bottom: 15px;
+    " mat-raised-button color="primary"   >Export as Excel</button></div>
+    	<!-- <div>{{data[0]}}</div>  -->
+	<mat-table  #table [dataSource]="dataSource" multiTemplateDataRows     >
+        <ng-container  [matColumnDef]="column" *ngFor="let column of displayedColumns1">
+          <mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef mat-sort-header> {{column}} </mat-header-cell>
+          <mat-cell  *matCellDef="let element"> {{element[column]}} </mat-cell>
+  </ng-container>
+<!-- Expanded Content Column - The detail row is made up of this one column -->
+      <!-- <ng-container matColumnDef="expandedDetail">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+          <mat-cell *matCellDef="let detail">
+              The symbol for {{detail.Region}} is {{detail.branch_ID}}
+          </mat-cell>
+          
+      </ng-container>  -->
+      <ng-container matColumnDef="action" >
+          <mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef mat-sort-header> Delete/Edit </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+              <button  mat-icon-button  style="text-decoration: none; border: none; background-color: #FFFFFF;"
+              [class.expanded]="expandedElement == element"
+              (click)="expandedElement = element">
+              <mat-icon>edit</mat-icon>
+              
+      </button>
+      <button   mat-icon-button  style="text-decoration: none; border: none; background-color: #FFFFFF;"
+      [class.expanded]="expandedElement == element"
+      (click)="expandedElement = element">
+      <mat-icon>delete</mat-icon>
+      
+</button>
+  
+          </mat-cell>
+      </ng-container>	
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></mat-row>
+      <!-- <mat-row *matRowDef="let row; columns: ['expandedDetail'];"
+          [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'" style="overflow: hidden">
+      </mat-row> -->
+  </mat-table>
+  <mat-paginator
+  #paginatorPageSize
+  pageSize="7"
+  showFirstLastButtons
+></mat-paginator>
+</div>
+
+</div>

@@ -1,4 +1,4 @@
-export interface Element {
+export interface dashboardTableColumns {
     Serial_No: number;
     'Acc Opened': number;
     'Acc Closed': number;
@@ -9,4 +9,33 @@ export interface Element {
     'Active Accounts': number;
     'Audit Completed': number;
     'Branch Recon Completed': number;
+  }
+  export interface usersTableColumns {
+    "Name": string;
+    'Date Added': string;
+    "Region": string;
+    'Branch ID': number;
+    'Phone Number': number;
+    "Email ID": string;
+    
+  }
+  export interface rolesTableColumns {
+    "Roll Title": string;
+    'Date Added': string;
+    "Roll Access": string;
+    'View': string;
+    "Rights/Permissions": string;
+    'Phone Number': number;
+    
+  }
+
+
+  export interface userRolesTableColumns {
+    "User Name": string;
+    'User ID': number;
+    'Branch ID': number;
+    'Location': string;
+    "Roll assigned": string;
+    'Date of roll assigned': string;
+    
   }

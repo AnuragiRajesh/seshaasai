@@ -15,11 +15,11 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', component: DashboardComponent,
   children: [     // Children routes are inside the parent route
-  // {
-  //   path: '',
-  //   component: SelectionComponent,
-  //   pathMatch: 'full'
-  // },
+  {
+    path: '',
+    component: SelectionComponent,
+    pathMatch: 'full'
+  },
   {
     path: 'dashboard',
     component: SelectionComponent,

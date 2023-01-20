@@ -4,7 +4,7 @@ import { MatTableDataSource, } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { DataService } from '../customServices/data.service';
-import { Element} from '../_interfaces/appInterfaces';
+import { dashboardTableColumns} from '../_interfaces/appInterfaces';
 
 
 @Component({
@@ -24,16 +24,16 @@ import { Element} from '../_interfaces/appInterfaces';
 
 export class TableComponent implements OnInit, AfterViewInit {
 
-
+  pageSizes = [3, 5, 7];
   public data: any
   @Input() slectedItemsFromSlectionComponent: any = <any>[]
   predefineFields:Array<string>=['Date', 'Region', 'State', 'Branch ID',]
   showComponent = false
   displayedColumns1 = ['Date', 'Region', 'State', 'Branch ID', 'Acc Opened', 'Acc Closed', 'Active Accounts', 'Audit Completed', 'Branch Recon Completed',]
   displayedColumns = [...this.displayedColumns1, 'action'];
-  dataSource: MatTableDataSource<Element>;
-  @ViewChild('MatPaginator', { static: false }) paginator!: MatPaginator;
-  @ViewChild('sort', { static: false }) sort!: MatSort;
+  dataSource: MatTableDataSource<dashboardTableColumns>;
+  @ViewChild('MatPaginator', { static: false }) paginator: MatPaginator;
+  @ViewChild('sort', { static: false }) sort: MatSort;
 
   expandedElement: any;
 
@@ -424,14 +424,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
 
-  // exportTable(): void {
-  //   this.exporter.exportTable('csv', {
-  //     filename: `test-${new Date().toISOString()}`,
-  //     Props: { 
-  //       Author: 'myName'
-  //     }
-  //   })
-  // }
+
 }
 
 
