@@ -11,6 +11,7 @@
     background-image: linear-gradient(rgba(0,0,50,0.8),rgba(0,0,50,0.8)), url(../../assets/Seshaasai_Background.png);
     background-position: center;
     background-size: cover;
+    position: relative;
 }
 img
 {
@@ -52,6 +53,7 @@ img
     border-radius: 3px;
     display: flex;
     align-items: center;
+    width: 100%;
 
 }
 input{

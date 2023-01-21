@@ -12,20 +12,20 @@
 <hr>
 <div style=" display: flex;  justify-content: right;">
 
-    <button class="exportButton" mat-raised-button color="primary"   >Export as Excel</button></div>
+    <button class="exportButton" mat-raised-button color="primary" (click)="ExportTOExcel()"  >Export as Excel</button></div>
     	<!-- <div>{{data[0]}}</div>  -->
-	<mat-table  #table [dataSource]="dataSource" multiTemplateDataRows   matSort  >
-        <ng-container  [matColumnDef]="column" *ngFor="let column of displayedColumns1">
-          <mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef mat-sort-header> {{column}} </mat-header-cell>
-          <mat-cell  *matCellDef="let element"> {{element[column]}} </mat-cell>
+        <div  class="example-container mat-elevation-z8" #Table   >
+	<mat-table   #table [dataSource]="dataSource" multiTemplateDataRows   matSort>
+        <ng-container   [matColumnDef]="column" *ngFor="let column of displayedColumns1">
+          <th   mat-header-cell style="background-color: #F4F4F4;"  class="p-2"   *matHeaderCellDef mat-sort-header> {{column}} </th>
+          <td mat-cell  *matCellDef="let element"> {{element[column]}} </td>
   </ng-container>
 
       <ng-container matColumnDef="action" >
-          <mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef > Delete/Edit </mat-header-cell>
-          <mat-cell *matCellDef="let element">
+          <th mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef > Delete/Edit </th>
+          <td mat-cell *matCellDef="let element">
               <button  mat-icon-button class="matIconButton"
-              [class.expanded]="expandedElement == element"
-              (click)="expandedElement = element">
+              >
               <mat-icon>edit</mat-icon>
               
       </button>
@@ -36,19 +36,21 @@
       
 </button>
   
-          </mat-cell>
+</td>
       </ng-container>	
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></mat-row>
-      <!-- <mat-row *matRowDef="let row; columns: ['expandedDetail'];"
-          [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'" style="overflow: hidden">
-      </mat-row> -->
+      <tr style=" overflow: hidden; text-overflow: ellipsis; word-break: break-word; "  mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr style=" overflow: hidden; text-overflow: ellipsis; word-break: break-word; "  mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></tr>
+    
   </mat-table>
-  <mat-paginator
-  #paginatorPageSize
-  pageSize="7"
-  showFirstLastButtons
-></mat-paginator>
+</div>
+<div class="footerPaginator">
+    <mat-paginator 
+    #paginatorPageSize
+    pageSize="7"
+    showFirstLastButtons
+  ></mat-paginator>
+  </div>
+
 </div>
 
 </div>

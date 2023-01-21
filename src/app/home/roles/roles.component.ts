@@ -1,10 +1,11 @@
-import { Component, ViewChild, OnInit, AfterViewInit,OnChanges } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit,OnChanges, ElementRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/customServices/data.service';
 import { rolesTableColumns } from 'src/app/_interfaces/appInterfaces';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-roles',
@@ -24,11 +25,23 @@ export class RolesComponent implements OnInit, AfterViewInit{
   displayedColumns:string[] = [...this.displayedColumns1, 'action'];
   dataSource: any
   @ViewChild('MatPaginator', { static: false }) paginator: MatPaginator;
+   @ViewChild('Table') table: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
 
   expandedElement: any;
   constructor(private service: DataService) {
     this.dataSource = new MatTableDataSource();
+  }
+  ExportTOExcel()
+  {
+
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    
+    /* save to file */
+    XLSX.writeFile(wb, 'TablesSizee.xlsx');
+    
   }
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.data);

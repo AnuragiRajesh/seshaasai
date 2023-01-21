@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { DataService } from '../../../customServices/data.service';
 import { dashboardTableColumns} from '../../../_interfaces/appInterfaces';
-
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-table',
@@ -23,7 +23,7 @@ import { dashboardTableColumns} from '../../../_interfaces/appInterfaces';
 
 
 export class TableComponent implements OnInit, AfterViewInit {
-
+  @ViewChild('Table') table: ElementRef;
   public data: any
   @Input() slectedItemsFromSlectionComponent: any = <any>[]
   predefineFields:Array<string>=['Date', 'Region', 'State', 'Branch ID',]
@@ -39,8 +39,16 @@ export class TableComponent implements OnInit, AfterViewInit {
   constructor(private service: DataService) {
     this.dataSource = new MatTableDataSource();
   }
-  isEMptyOrNull(text: string) {
-    return text == null || text == ''
+  ExportTOExcel()
+  {
+
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    
+    /* save to file */
+    XLSX.writeFile(wb, 'TablesSizee.xlsx');
+    
   }
   ngOnInit() {
 
