@@ -36,7 +36,7 @@ import { RolesComponent } from './home/roles/roles.component';
 import { UserRolesComponent } from './home/user-roles/user-roles.component';
 import { AddUserComponent } from './user-component/add-user/add-user.component';
 import { UserComponentComponent } from './user-component/user-component.component';
-import { DialogModule } from './home/roles/dailog-box/dialog.module';
+// import { DialogModule } from './home/roles/dailog-box/dialog.module';
 // import { MatTableExporterModule } from '@danievds/mat-table-exporter';
 
 @NgModule({
@@ -57,7 +57,7 @@ import { DialogModule } from './home/roles/dailog-box/dialog.module';
     
   ],
   imports: [
-    DialogModule,
+    // DialogModule,
     // MatTableExporterModule,
     BrowserModule,
     AppRoutingModule,

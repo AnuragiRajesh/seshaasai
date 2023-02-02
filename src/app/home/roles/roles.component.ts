@@ -5,8 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/customServices/data.service';
 import { rolesTableColumns } from 'src/app/_interfaces/appInterfaces';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from './dailog-box/dialog.component';
+// import { MatDialog } from '@angular/material/dialog';
+// import { DialogComponent } from './dailog-box/dialog.component';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -32,18 +32,20 @@ export class RolesComponent implements OnInit, AfterViewInit{
   @ViewChild(MatSort) sort: MatSort;
 
   expandedElement: any;
-  constructor(private service: DataService,public dialog: MatDialog) {
+  constructor(private service: DataService
+    // ,public dialog: MatDialog
+    ) {
     this.dataSource = new MatTableDataSource();
   }
   openDialog(): void {
-    let dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
-      data: this.poop_up
-    });
+    // let dialogRef = this.dialog.open(DialogComponent, {
+    //   width: '250px',
+    //   data: this.poop_up
+    // });
   
-    dialogRef.afterClosed().subscribe(result => {
-      this.poop_up = result;
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this.poop_up = result;
+    // });
   }
   ExportTOExcel()
   {
