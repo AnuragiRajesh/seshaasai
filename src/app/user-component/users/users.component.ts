@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/customServices/data.service';
 import { usersTableColumns } from 'src/app/_interfaces/appInterfaces';
 import * as XLSX from 'xlsx';
+import { Route ,ActivatedRoute} from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -20,9 +22,11 @@ export class UsersComponent implements OnInit ,AfterViewInit{
   @ViewChild('paginatorPageSize') paginatorPageSize: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('Table') table: ElementRef;
+  VOForm: FormGroup;
   pageSizes = [3, 5, 7];
   expandedElement: any;
-  constructor(private service: DataService) {
+  constructor(private service: DataService,
+) {
     // this.dataSource = new MatTableDataSource();
   }
   ExportTOExcel()
@@ -39,6 +43,9 @@ export class UsersComponent implements OnInit ,AfterViewInit{
     
   ngOnInit(): void {
     this.dataSource= new MatTableDataSource(this.data)
+  }
+  navigateToAdduser(){
+    // this.Route.navigate(['user/addUser'])
   }
  
   ngAfterViewInit(): void {

@@ -9,7 +9,8 @@ export interface dashboardTableColumns {
     'Active Accounts': number;
     'Audit Completed': number;
     'Branch Recon Completed': number;
-  }
+    "moreDetails":[]
+   }
   export interface usersTableColumns {
     "Name": string;
     'Date Added': string;

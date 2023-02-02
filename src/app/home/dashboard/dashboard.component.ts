@@ -14,7 +14,7 @@ export class DashboardComponent {// public showTable = false
   public date: any
   public metric: any
   public branch_Id: any
-  public form!: FormGroup;
+  public form: FormGroup;
   public state = <any>[];
   public regions = <any>[];
   dropdownSettings: IDropdownSettings = {};
@@ -52,6 +52,7 @@ export class DashboardComponent {// public showTable = false
       { item_id: 5, item_text: 'Custom date range' }
 
     ];
+  
     this.branch_Id = [
       { item_id: 1, item_text: 1000123 },
       { item_id: 2, item_text: 1000124 },
@@ -211,10 +212,6 @@ export class DashboardComponent {// public showTable = false
   onSelectAllOfBranch(items: any) {
 
   }
-
-
-
-
 
   onItemSelectOfState(item: any) {
   }

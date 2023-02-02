@@ -4,8 +4,9 @@
 
 <div style=" display: flex;  justify-content: leftight;">
 
-<button class="exportButton" mat-raised-button color="primary" (click)="ExportTOExcel()"  >Export as Excel</button></div>
-<div  class="example-container mat-elevation-z8" #Table>
+<button class="exportButton" (click)="ExportTOExcel()" mat-raised-button color="primary"  
+  >Export as Excel</button></div>
+<div class="example-container mat-elevation-z8" #Table>
 	<!-- <div>{{data[0]}}</div>  -->
 	<mat-table  #table [dataSource]="dataSource" multiTemplateDataRows matSort  class="mat-elevation-z8"  >
 		  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns1">
@@ -13,11 +14,34 @@
 			<mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
 	</ng-container>
 <!-- Expanded Content Column - The detail row is made up of this one column -->
-		<ng-container matColumnDef="expandedDetail">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
-			<mat-cell *matCellDef="let detail">
-				The symbol for {{detail.Region}} is {{detail.branch_ID}}
-			</mat-cell>
+		<ng-container matColumnDef="expandedDetail"  >
+			<td mat-cell *matCellDef="let element" [attr.colspan]="expandableColumn.length">
+					<ng-container style="display: flex; flex-direction: row;" >
+						<table style="display: flex;">
+							<div>
+								
+								<td>{{expandableColumn[0]}}</td>
+								<tr *ngFor="let item of element.moreDetails"><td>{{item["Audit performed by"]}}</td></tr>
+							</div>
+							<div>
+								
+								<td>{{expandableColumn[1]}}</td>
+								<tr *ngFor="let item of element.moreDetails"><td>{{item["EmployeE ID"]}}</td></tr>
+							</div>
+							<div>
+								
+								<td>{{expandableColumn[2]}}</td>
+								<tr *ngFor="let item of element.moreDetails"><td>{{item["Time"]}}</td></tr>
+							</div>
+							<div>
+								
+								<td>{{expandableColumn[3]}}</td>
+								<tr *ngFor="let item of element.moreDetails"><td>{{item["Inventory"]}}</td></tr>
+							</div>
+						
+					</table>
+					</ng-container>
+			  </td>
 			
 		</ng-container>
 		<ng-container matColumnDef="action" >
@@ -26,12 +50,12 @@
 				<button  mat-icon-button *ngIf="expandedElement != element" style="text-decoration: none; border: none; background-color: #FFFFFF;"
                 [class.expanded]="expandedElement == element"
                 (click)="expandedElement = element">
-                <mat-icon>keyboard_arrow_down</mat-icon>
+                <mat-icon>add_circle_outline</mat-icon>
         </button>
 				<button  mat-icon-button *ngIf="expandedElement == element"  style="text-decoration: none; border: none; background-color: #FFFFFF;"
                 [class.expanded]="expandedElement == undefined"
                 (click)="expandedElement = undefined">
-                <mat-icon>keyboard_arrow_up</mat-icon>
+                <mat-icon>cancel</mat-icon>
         </button>
 	</mat-cell>
 		</ng-container>	

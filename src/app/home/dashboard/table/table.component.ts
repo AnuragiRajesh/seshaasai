@@ -28,6 +28,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Input() slectedItemsFromSlectionComponent: any = <any>[]
   predefineFields:Array<string>=['Date', 'Region', 'State', 'Branch ID',]
   showComponent = false
+  expandableColumn:Array<string> = ["Audit performed by", "EmployeE ID","Time", "Inventory"];
   displayedColumns1 = ['Date', 'Region', 'State', 'Branch ID', 'Acc Opened', 'Acc Closed', 'Active Accounts', 'Audit Completed', 'Branch Recon Completed',]
   displayedColumns = [...this.displayedColumns1, 'action'];
   dataSource: MatTableDataSource<dashboardTableColumns>;
@@ -64,7 +65,63 @@ export class TableComponent implements OnInit, AfterViewInit {
       res.forEach((obj: any) => renameKey(obj, 'Acc_Closed', 'Acc Closed'));
       res.forEach((obj: any) => renameKey(obj, 'Serial_No', 'Serial No'));
       console.log(res, "service is beeing called?")
-      this.data = res
+      this.data =res
+//       this.data = [{"Acc Closed": 4030,
+//         "Acc Opened": 4108,
+//         "Active Accounts": 78,
+//         "Audit Completed": 7,
+//        "Branch ID": 1000123,
+//        "Branch Recon Completed": 6,
+//         Date: "2023-01-08",
+//         Region: "North",
+//         "Serial No": undefined,
+//         State: "Punjab",
+//         "moreDetails":[{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987}]
+//       },{"Acc Closed": 4030,
+//       "Acc Opened": 4108,
+//       "Active Accounts": 78,
+//       "Audit Completed": 7,
+//      "Branch ID": 1000123,
+//      "Branch Recon Completed": 6,
+//       Date: "2023-01-08",
+//       Region: "North",
+//       "Serial No": undefined,
+//       State: "Punjab",
+//       "moreDetails":[{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987}]
+//     },{"Acc Closed": 4030,
+//     "Acc Opened": 4108,
+//     "Active Accounts": 78,
+//     "Audit Completed": 7,
+//    "Branch ID": 1000123,
+//    "Branch Recon Completed": 6,
+//     Date: "2023-01-08",
+//     Region: "North",
+//     "Serial No": undefined,
+//     State: "Punjab",
+//     "moreDetails":[{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987}]
+//   },{"Acc Closed": 4030,
+//   "Acc Opened": 4108,
+//   "Active Accounts": 78,
+//   "Audit Completed": 7,
+//  "Branch ID": 1000123,
+//  "Branch Recon Completed": 6,
+//   Date: "2023-01-08",
+//   Region: "North",
+//   "Serial No": undefined,
+//   State: "Punjab",
+//   "moreDetails":[{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987}]
+// },{"Acc Closed": 4030,
+// "Acc Opened": 4108,
+// "Active Accounts": 78,
+// "Audit Completed": 7,
+// "Branch ID": 1000123,
+// "Branch Recon Completed": 6,
+// Date: "2023-01-08",
+// Region: "North",
+// "Serial No": undefined,
+// State: "Punjab",
+// "moreDetails":[{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987}]
+// }]
       this.dataSource.data = this.data
     })
 
