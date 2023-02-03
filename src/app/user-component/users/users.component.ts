@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/customServices/data.service';
 import { usersTableColumns } from 'src/app/_interfaces/appInterfaces';
 import * as XLSX from 'xlsx';
-import { Route ,ActivatedRoute} from '@angular/router';
+import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
 
@@ -25,9 +25,12 @@ export class UsersComponent implements OnInit ,AfterViewInit{
   VOForm: FormGroup;
   pageSizes = [3, 5, 7];
   expandedElement: any;
-  constructor(private service: DataService,
+  constructor(private service: DataService,private router: Router
 ) {
     // this.dataSource = new MatTableDataSource();
+  }
+  clicked(){
+    this.router.navigate(['/addUser']);
   }
   ExportTOExcel()
   {

@@ -15,30 +15,25 @@
 	</ng-container>
 <!-- Expanded Content Column - The detail row is made up of this one column -->
 		<ng-container matColumnDef="expandedDetail"  >
-			<td mat-cell *matCellDef="let element" [attr.colspan]="expandableColumn.length">
-					<ng-container style="display: flex; flex-direction: row;" >
-						<table style="display: flex;">
-							<div>
-								
-								<td>{{expandableColumn[0]}}</td>
-								<tr *ngFor="let item of element.moreDetails"><td>{{item["Audit performed by"]}}</td></tr>
-							</div>
-							<div>
-								
-								<td>{{expandableColumn[1]}}</td>
-								<tr *ngFor="let item of element.moreDetails"><td>{{item["EmployeE ID"]}}</td></tr>
-							</div>
-							<div>
-								
-								<td>{{expandableColumn[2]}}</td>
-								<tr *ngFor="let item of element.moreDetails"><td>{{item["Time"]}}</td></tr>
-							</div>
-							<div>
-								
-								<td>{{expandableColumn[3]}}</td>
-								<tr *ngFor="let item of element.moreDetails"><td>{{item["Inventory"]}}</td></tr>
-							</div>
+			<td mat-cell *matCellDef="let element" [attr.colspan]="expandableColumn.length "  [style.padding]="'20px'"  [style.background-color]="'#F4F4F4'" [style.width]="'100%'" [style.text-align]="'center'" >
+					<ng-container style="display: flex; flex-direction: row; background-color: #F4F4F4; " >
+						<table mat-table [dataSource]="dataSource2" class="mat-elevation-z8 mat-table-without-lines">
 						
+							<ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns2">
+								<th mat-header-cell  style="text-align: center;" *matHeaderCellDef> {{column}} </th>
+								<td mat-cell style="text-align: center;"  *matCellDef="let element"> {{element[column]}} </td>
+							  </ng-container>
+							
+							  <!-- <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns2">
+								<th mat-header-cell *matHeaderCellDef> column </th>
+								<mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
+						</ng-container> -->
+							
+							  <!-- Table header -->
+							  <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+							
+							  <!-- Table data rows -->
+							  <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
 					</table>
 					</ng-container>
 			  </td>

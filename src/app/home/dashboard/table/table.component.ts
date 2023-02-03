@@ -32,14 +32,20 @@ export class TableComponent implements OnInit, AfterViewInit {
   displayedColumns1 = ['Date', 'Region', 'State', 'Branch ID', 'Acc Opened', 'Acc Closed', 'Active Accounts', 'Audit Completed', 'Branch Recon Completed',]
   displayedColumns = [...this.displayedColumns1, 'action'];
   dataSource: MatTableDataSource<dashboardTableColumns>;
+  dataSource2:any;
+
   @ViewChild('MatPaginator', { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
+  displayedColumns2: string[] = ['Activity', 'User','Activity Time','Inventory Count', 'Download'];
+  
   expandedElement: any;
 
   constructor(private service: DataService) {
     this.dataSource = new MatTableDataSource();
+   
   }
+ 
+
   ExportTOExcel()
   {
 
@@ -53,7 +59,15 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
 
+    this.dataSource2 = [
+      
+      { Activity : "Recon", "User":"Hareesh K." ,"Activity Time" :"11:59","Inventory Count":"123", Download:"📥"},
+      { Activity : "Audit", "User":"Rajesh A." ,"Activity Time" :"12:29","Inventory Count":"123",Download:"📥"},
+      { Activity : "Recon", "User":"Hareesh K." ,"Activity Time" :"14:59","Inventory Count":"123",Download:"📥"}, 
+      { Activity : "Recon", "User":"Hareesh K." ,"Activity Time" :"14:59","Inventory Count":"123",Download:"📥"},
 
+      // ...
+    ];
     this.dataSource.sort = this.sort;
     this.service.availableData().subscribe((res: any) => {
 
