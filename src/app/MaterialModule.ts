@@ -6,12 +6,13 @@ import {MatSelectModule} from '@angular/material/select';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatTableModule } from '@angular/material/table' ; 
 import { MatIconModule } from '@angular/material/icon';
-import {MatDialogModule} from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatSortModule } from '@angular/material/sort';
-
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
+import  {PortalModule} from '@angular/cdk/portal'
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 @NgModule({
   imports: [
     ReactiveFormsModule,
@@ -26,7 +27,7 @@ import { MatSortModule } from '@angular/material/sort';
     CdkTableModule,
     MatPaginatorModule,
     MatSortModule,
-
+    MatDialogModule,
 
 
   ],
@@ -42,9 +43,8 @@ import { MatSortModule } from '@angular/material/sort';
     CdkTableModule,
     MatPaginatorModule,
     MatSortModule,
-
-    NgMultiSelectDropDownModule
-
+    MatDialogModule,
+    NgMultiSelectDropDownModule,
 
   ]
 })

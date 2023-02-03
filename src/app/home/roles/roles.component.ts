@@ -1,18 +1,22 @@
-import { Component, ViewChild, OnInit, AfterViewInit,OnChanges, ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit,ViewEncapsulation, ElementRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/customServices/data.service';
 import { rolesTableColumns } from 'src/app/_interfaces/appInterfaces';
+import { DialogComponent } from './dailog-box/dialog.component';
+
 // import { MatDialog } from '@angular/material/dialog';
 // import { DialogComponent } from './dailog-box/dialog.component';
 import * as XLSX from 'xlsx';
+import { MatDialog ,MatDialogConfig} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-roles',
   templateUrl: './roles.component.html',
   styleUrls: ['./roles.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
@@ -32,20 +36,17 @@ export class RolesComponent implements OnInit, AfterViewInit{
   @ViewChild(MatSort) sort: MatSort;
 
   expandedElement: any;
-  constructor(private service: DataService
-    // ,public dialog: MatDialog
+ 
+  constructor(private service: DataService,
+    public dialog: MatDialog
     ) {
     this.dataSource = new MatTableDataSource();
   }
   openDialog(): void {
-    // let dialogRef = this.dialog.open(DialogComponent, {
-    //   width: '250px',
-    //   data: this.poop_up
-    // });
-  
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this.poop_up = result;
-    // });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+  this.dialog.open(DialogComponent, dialogConfig);
   }
   ExportTOExcel()
   {

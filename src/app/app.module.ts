@@ -13,10 +13,13 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { UsersComponent } from './user-component/users/users.component';
 import { RolesComponent } from './home/roles/roles.component';
+import { DialogComponent } from './home/roles/dailog-box/dialog.component';
 import { UserRolesComponent } from './home/user-roles/user-roles.component';
 import { AddUserComponent } from './user-component/add-user/add-user.component';
 import { ParentUserComponent } from './user-component/user-component.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { ParentUserComponent } from './user-component/user-component.component';
     DashboardComponent,
     UsersComponent,
     RolesComponent,
+    DialogComponent,
     UserRolesComponent,
     AddUserComponent,
     ParentUserComponent,
@@ -40,12 +44,14 @@ import { ParentUserComponent } from './user-component/user-component.component';
     MaterialModule.forRoot(),
     BrowserModule,
     HttpClientModule,
+    MatDialogModule,
 
     
     
 
   ],
   providers: [ ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }
