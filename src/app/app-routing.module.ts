@@ -3,13 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 // import { TableComponent } from './home/dashboard/table/table.component';
 import {LoginComponent} from './login/login.component'
 import {DashboardComponent} from './home/dashboard/dashboard.component';
-// import { UsersComponent } from './user-component/users/users.component';
+import { UsersComponent } from './user-component/users/users.component';
 import { UserRolesComponent } from './home/user-roles/user-roles.component';
 import { RolesComponent } from './home/roles/roles.component';
 import { HomeComponent } from './home/home.component';
-// import { AddUserComponent } from './user-component/add-user/add-user.component';
-// import { UserComponentComponent } from './user-component/user-component.component';
-import { UserRoutingModule } from './user-component/user-routing.module';
+import { AddUserComponent } from './user-component/add-user/add-user.component';
+import { ParentUserComponent } from './user-component/user-component.component';
 
 
 const routes: Routes = [
@@ -27,7 +26,12 @@ const routes: Routes = [
   },
   {   
     path: 'userComponent',
-    loadChildren : () => UserRoutingModule
+    component: ParentUserComponent,
+    children:[
+      { path: '', redirectTo: 'user', pathMatch: 'full' },
+      { path: 'user', component:UsersComponent },
+      { path: 'addUser', component:AddUserComponent },
+    ]
     
   
   },
@@ -50,7 +54,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),UserRoutingModule],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

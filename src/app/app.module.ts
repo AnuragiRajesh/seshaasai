@@ -11,12 +11,12 @@ import { MaterialModule } from './MaterialModule';
 import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
-// import { UsersComponent } from './user-component/users/users.component';
+import { UsersComponent } from './user-component/users/users.component';
 import { RolesComponent } from './home/roles/roles.component';
 import { UserRolesComponent } from './home/user-roles/user-roles.component';
 import { AddUserComponent } from './user-component/add-user/add-user.component';
-import { UserComponentComponent } from './user-component/user-component.component';
-import { UserModule } from './user-component/users.module';
+import { ParentUserComponent } from './user-component/user-component.component';
+
 
 @NgModule({
   declarations: [
@@ -28,20 +28,18 @@ import { UserModule } from './user-component/users.module';
     TableComponent,
     HomeComponent,
     DashboardComponent,
-    // UsersComponent,
+    UsersComponent,
     RolesComponent,
     UserRolesComponent,
     AddUserComponent,
-    UserComponentComponent,
+    ParentUserComponent,
     
   ],
   imports: [
-
+    AppRoutingModule,
     MaterialModule.forRoot(),
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
-    UserModule
 
     
     
