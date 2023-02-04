@@ -48,7 +48,7 @@ public data:any
 
   ngOnInit() { 
     type MyStructure = Object[] | Object;
-    this.service.availableData().subscribe(res=>{
+    this.service.getDashboardData().subscribe(res=>{
       this.data= res
       this.data.map((ele:any)=>{
         // console.log(ele.Acc_Closed)

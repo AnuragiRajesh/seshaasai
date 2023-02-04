@@ -69,7 +69,7 @@ export class TableComponent implements OnInit, AfterViewInit {
       // ...
     ];
     this.dataSource.sort = this.sort;
-    this.service.availableData().subscribe((res: any) => {
+    this.service.getDashboardData().subscribe((res: any) => {
 
       res.forEach((obj: any) => renameKey(obj, 'Branch_Recon_Completed', 'Branch Recon Completed'));
       res.forEach((obj: any) => renameKey(obj, 'Audit_Completed', 'Audit Completed'));
@@ -80,62 +80,7 @@ export class TableComponent implements OnInit, AfterViewInit {
       res.forEach((obj: any) => renameKey(obj, 'Serial_No', 'Serial No'));
       console.log(res, "service is beeing called?")
       this.data =res
-//       this.data = [{"Acc Closed": 4030,
-//         "Acc Opened": 4108,
-//         "Active Accounts": 78,
-//         "Audit Completed": 7,
-//        "Branch ID": 1000123,
-//        "Branch Recon Completed": 6,
-//         Date: "2023-01-08",
-//         Region: "North",
-//         "Serial No": undefined,
-//         State: "Punjab",
-//         "moreDetails":[{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987}]
-//       },{"Acc Closed": 4030,
-//       "Acc Opened": 4108,
-//       "Active Accounts": 78,
-//       "Audit Completed": 7,
-//      "Branch ID": 1000123,
-//      "Branch Recon Completed": 6,
-//       Date: "2023-01-08",
-//       Region: "North",
-//       "Serial No": undefined,
-//       State: "Punjab",
-//       "moreDetails":[{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987}]
-//     },{"Acc Closed": 4030,
-//     "Acc Opened": 4108,
-//     "Active Accounts": 78,
-//     "Audit Completed": 7,
-//    "Branch ID": 1000123,
-//    "Branch Recon Completed": 6,
-//     Date: "2023-01-08",
-//     Region: "North",
-//     "Serial No": undefined,
-//     State: "Punjab",
-//     "moreDetails":[{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987}]
-//   },{"Acc Closed": 4030,
-//   "Acc Opened": 4108,
-//   "Active Accounts": 78,
-//   "Audit Completed": 7,
-//  "Branch ID": 1000123,
-//  "Branch Recon Completed": 6,
-//   Date: "2023-01-08",
-//   Region: "North",
-//   "Serial No": undefined,
-//   State: "Punjab",
-//   "moreDetails":[{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987}]
-// },{"Acc Closed": 4030,
-// "Acc Opened": 4108,
-// "Active Accounts": 78,
-// "Audit Completed": 7,
-// "Branch ID": 1000123,
-// "Branch Recon Completed": 6,
-// Date: "2023-01-08",
-// Region: "North",
-// "Serial No": undefined,
-// State: "Punjab",
-// "moreDetails":[{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987},{"Audit performed by":"Piyush Chawla", "EmployeE ID":677,"Time":"12:18 pm", "Inventory":7987}]
-// }]
+
       this.dataSource.data = this.data
     })
 
@@ -145,7 +90,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
   ngOnChanges(changes: any) {
     this.dataSource.sort = this.sort;
-    console.log(this.slectedItemsFromSlectionComponent, "lllllllllllllll", this.data)
+    // console.log(this.slectedItemsFromSlectionComponent, "lllllllllllllll", this.data)
 
 
 

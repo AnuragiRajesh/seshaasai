@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, AfterViewInit,ViewEncapsulation, ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit, ElementRef,ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MatSort } from '@angular/material/sort';
@@ -6,17 +6,22 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/customServices/data.service';
 import { rolesTableColumns } from 'src/app/_interfaces/appInterfaces';
 import { DialogComponent } from './dailog-box/dialog.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 // import { MatDialog } from '@angular/material/dialog';
 // import { DialogComponent } from './dailog-box/dialog.component';
 import * as XLSX from 'xlsx';
 import { MatDialog ,MatDialogConfig} from '@angular/material/dialog';
+import { stat } from 'fs';
 
 @Component({
   selector: 'app-roles',
+  // standalone: true,
   templateUrl: './roles.component.html',
+  encapsulation:ViewEncapsulation.None,
   styleUrls: ['./roles.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+ 
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
@@ -31,6 +36,7 @@ export class RolesComponent implements OnInit, AfterViewInit{
   displayedColumns1:string[] = ['Roll Title','Date Added', 'Roll Access',  'View',  'Rights/Permissions','Phone Number',]
   displayedColumns:string[] = [...this.displayedColumns1, 'action'];
   dataSource: any
+  @ViewChild('content', { static: true }) content: ElementRef;
   @ViewChild('MatPaginator', { static: false }) paginator: MatPaginator;
    @ViewChild('Table') table: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
@@ -38,15 +44,23 @@ export class RolesComponent implements OnInit, AfterViewInit{
   expandedElement: any;
  
   constructor(private service: DataService,
-    public dialog: MatDialog
+    private modalService: NgbModal
     ) {
     this.dataSource = new MatTableDataSource();
   }
-  openDialog(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-        dialogConfig.autoFocus = true;
-  this.dialog.open(DialogComponent, dialogConfig);
+  openDialog(content:any): void {
+    const config: NgbModalOptions = {
+      backdrop: false,
+      keyboard: true,
+      centered: true,
+      
+    };
+    const modalRef = this.modalService.open(content,config);
+    modalRef.result.then((result) => {
+      console.log(result);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
   ExportTOExcel()
   {
@@ -71,5 +85,6 @@ export class RolesComponent implements OnInit, AfterViewInit{
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.content.nativeElement.prependTo(document.body);
   }
 }

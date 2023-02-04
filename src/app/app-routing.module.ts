@@ -4,13 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from './login/login.component'
 import {DashboardComponent} from './home/dashboard/dashboard.component';
 import { UsersComponent } from './user-component/users/users.component';
-import { UserRolesComponent } from './home/user-roles/user-roles.component';
-import { RolesComponent } from './home/roles/roles.component';
+import { RolesComponent } from './role-component/roles/roles.component';
 import { HomeComponent } from './home/home.component';
 import { AddUserComponent } from './user-component/add-user/add-user.component';
 import { ParentUserComponent } from './user-component/user-component.component';
-
-
+import { ParentUserRoleComponent } from './user-role-component/parent-user-role.component';
+import { ParentRoleComponent } from './role-component/parent-role.component';
+import { AddUserRoleComponent } from './user-role-component/add-user-role/add-user-role.component';
+import { UserRolesComponent } from './user-role-component/user-roles/user-roles.component';
+import { AddRoleComponent } from './role-component/add-role/add-role.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent,
@@ -37,12 +39,22 @@ const routes: Routes = [
   },
   
   {
-    path: 'roles',
-    component: RolesComponent,
+    path: 'rolesComponent',
+    component: ParentRoleComponent,
+    children:[
+      { path: '', redirectTo: 'role', pathMatch: 'full' },
+      { path: 'role', component:RolesComponent },
+      { path: 'addRole', component:AddRoleComponent },
+    ]
   },
   {
-    path: 'userRoles',
-    component: UserRolesComponent,
+    path: 'userRolesComponent',
+    component: ParentUserRoleComponent,
+    children:[
+      { path: '', redirectTo: 'userRoles', pathMatch: 'full' },
+      { path: 'userRoles', component:UserRolesComponent },
+      { path: 'addUsereRole', component:AddUserRoleComponent },
+    ]
   },
  
   
