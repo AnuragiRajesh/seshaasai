@@ -12,7 +12,7 @@ import * as XLSX from 'xlsx';
   templateUrl: './user-roles.component.html',
   styleUrls: ['./user-roles.component.scss']
 })
-export class UserRolesComponent implements OnInit, AfterViewInit {
+export class UserRolesComponent implements OnInit {
   data:any
   displayedColumns1 = ['User Name','User ID', 'Branch ID', 'Location',    'Roll assigned','Date of roll assigned',]
   displayedColumns = [...this.displayedColumns1, 'action'];
@@ -41,6 +41,7 @@ export class UserRolesComponent implements OnInit, AfterViewInit {
       res.forEach((obj: any) => renameKey(obj, 'Roll_Assigned', 'Roll assigned'));
       res.forEach((obj: any) => renameKey(obj, 'BranchID', 'Branch ID'));
       res.forEach((obj: any) => renameKey(obj, 'UserID', 'User ID'));
+      res.forEach((obj: any) => renameKey(obj, 'Created_Date', 'Date of roll assigned'));
       res.forEach((obj: any) => renameKey(obj, 'UserName', 'User Name'));
       // res.forEach((obj: any) => renameKey(obj, 'Serial_No', 'Serial No'));
       console.log(res, "service is beeing called?")
@@ -49,10 +50,10 @@ export class UserRolesComponent implements OnInit, AfterViewInit {
     })
   }
  
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-  }
+  // ngAfterViewInit(): void {
+  //   this.dataSource.sort = this.sort;
+  //   this.dataSource.paginator = this.paginator;
+  // }
 }
 function renameKey(obj: any, oldKey: any, newKey: any) {
   obj[newKey] = obj[oldKey];

@@ -44,10 +44,11 @@ export class UsersComponent implements OnInit ,AfterViewInit{
     XLSX.writeFile(wb, 'TablesSizee.xlsx');
     
   }
-    
+  
   ngOnInit(): void {
     this.service.getUserData().subscribe((res:any)=>{
       res.forEach((obj: any) => renameKey(obj, 'PhoneNumber', 'Phone Number'));
+      res.forEach((obj: any) => renameKey(obj, 'Created_Date', 'Date Added'));
       res.forEach((obj: any) => renameKey(obj, 'BranchID', 'Branch ID'));
       res.forEach((obj: any) => renameKey(obj, 'Email', 'Email ID'));
       res.forEach((obj: any) => renameKey(obj, 'UserName', 'User'));

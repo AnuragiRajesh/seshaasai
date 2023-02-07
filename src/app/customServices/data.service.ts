@@ -10,6 +10,7 @@ export class DataService {
 public _Dashboard_API: string = "http://172.17.131.162:8100/api/PushData/GetData";
 public _User_role_API:string ="http://172.17.131.162:3100/api/Users/GetClaims"
 public _User_API:string ="http://172.17.131.162:3100/api/Users"
+public _Role_API:string = "http://172.17.131.162:3100/api/Roles"
 
 
   constructor(public http: HttpClient) {}
@@ -18,8 +19,12 @@ public _User_API:string ="http://172.17.131.162:3100/api/Users"
    return this.http.get(this._Dashboard_API);
  }
  getUserData() {
-  return this.http.get(this._User_API);
+   return this.http.get(this._User_API);
+  }
+  getRoleData() {
+  return this.http.get(this._Role_API);
 }
+
  getUserRoleData() {
   return this.http.get(this._User_role_API);
 }

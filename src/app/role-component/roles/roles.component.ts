@@ -5,14 +5,13 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/customServices/data.service';
 import { rolesTableColumns } from 'src/app/_interfaces/appInterfaces';
-import { DialogComponent } from './dailog-box/dialog.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-
-// import { MatDialog } from '@angular/material/dialog';
-// import { DialogComponent } from './dailog-box/dialog.component';
+import { Rollpoop_upInterface } from 'src/app/_interfaces/appInterfaces';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogComponent } from './dailog-box/dialog.component';
 import * as XLSX from 'xlsx';
-import { MatDialog ,MatDialogConfig} from '@angular/material/dialog';
+// import { MatDialog ,MatDialogConfig} from '@angular/material/dialog';
 import { stat } from 'fs';
 
 @Component({
@@ -30,10 +29,11 @@ import { stat } from 'fs';
     ]),
   ],
 }) 
-export class RolesComponent implements OnInit, AfterViewInit{
-  poop_up:{}={Roll_Title:"Staff", Roll_Description:"Everyone below the assiatant manager position comes under Staff.", Roll_Access:"Eamil only access", View_Access:"All metrics","Rights/Permissions":"View only"}
- data:rolesTableColumns[]= [{"Roll Title":" Sales Head","Date Added":"19/112022", "Roll Access":"All Access","View":"No. of closed accounts only","Rights/Permissions":"View and edit limited", "Phone Number":5678092354},{"Roll Title":"Admin","Date Added":"19/112022", "Roll Access":"E-mail only","View":"Audit only","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Technical","Date Added":"19/112022", "Roll Access":"All Access","View":"Inventory check only","Rights/Permissions":"View and edit all", "Phone Number":5678092354},{"Roll Title":"Marketting Manager","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"No. of open accounts only","Rights/Permissions":"View and edit all", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"E-mail only","View":"All metrics","Rights/Permissions":"View and edit limited", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},]
-  displayedColumns1:string[] = ['Roll Title','Date Added', 'Roll Access',  'View',  'Rights/Permissions','Phone Number',]
+export class RolesComponent implements OnInit{
+  poop_up:Rollpoop_upInterface={Roll_Title:"Staff", Roll_Description:"description is yet to be updated from the backend", Roll_Access:"Eamil only access", View_Access:"All metrics",Rights_Permissions:"View only"}
+ data:any
+//  :rolesTableColumns[]= [{"Roll Title":" Sales Head","Date Added":"19/112022", "Roll Access":"All Access","View":"No. of closed accounts only","Rights/Permissions":"View and edit limited", "Phone Number":5678092354},{"Roll Title":"Admin","Date Added":"19/112022", "Roll Access":"E-mail only","View":"Audit only","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Technical","Date Added":"19/112022", "Roll Access":"All Access","View":"Inventory check only","Rights/Permissions":"View and edit all", "Phone Number":5678092354},{"Roll Title":"Marketting Manager","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"No. of open accounts only","Rights/Permissions":"View and edit all", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"E-mail only","View":"All metrics","Rights/Permissions":"View and edit limited", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},]
+  displayedColumns1:string[] = ['Role Title','Date Added', 'Role Access',  'View',  'Rights/Permissions',]
   displayedColumns:string[] = [...this.displayedColumns1, 'action'];
   dataSource: any
   @ViewChild('content', { static: true }) content: ElementRef;
@@ -44,13 +44,25 @@ export class RolesComponent implements OnInit, AfterViewInit{
   expandedElement: any;
  
   constructor(private service: DataService,
-    private modalService: NgbModal
+    private modalService: NgbModal,public dialog: MatDialog
     ) {
     this.dataSource = new MatTableDataSource();
   }
-  openDialog(content:any): void {
+  openPopup() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.backdropClass = 'dialog-backdrop';
+    dialogConfig.disableClose = true;
+    this.dialog.open(DialogComponent,dialogConfig);
+  }
+  openDialog(content:any,element:any): void {
+    this.poop_up.Roll_Title=element['Role Title']
+    this.poop_up.Roll_Description=element['Description']
+    this.poop_up.Roll_Access=element['Role Access']
+    this.poop_up.View_Access=element['View']
+    this.poop_up.Rights_Permissions=element['Rights/Permissions']
+    console.log(element,"jjjjjjjjjj")
     const config: NgbModalOptions = {
-      backdrop: false,
+      backdrop:false,
       keyboard: true,
       centered: true,
       
@@ -74,17 +86,31 @@ export class RolesComponent implements OnInit, AfterViewInit{
     
   }
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource(this.data);
+    this.service.getRoleData().subscribe((res:any)=>{
+      console.log(res,"hareesh")
+      res.forEach((obj: any) => renameKey(obj, 'Name', 'Role Title'));
+      res.forEach((obj: any) => renameKey(obj, 'Created_Date', 'Date Added'));
+      res.forEach((obj: any) => renameKey(obj, 'RoleAccess', 'Role Access'));
+      res.forEach((obj: any) => renameKey(obj, 'Rights/Permission', 'Rights/Permissions'));
+  this.data=res
+  this.dataSource = new MatTableDataSource(res);
+
+    })
     this.dataSource.sort = this.sort;
   }
  
-  // ngOnChanges(){
-  //   this.dataSource = new MatTableDataSource(this.data);
-  //   this.dataSource.sort = this.sort;
-  // }
-  ngAfterViewInit(): void {
+  ngOnChanges(){
+    this.dataSource = new MatTableDataSource(this.data);
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.content.nativeElement.prependTo(document.body);
   }
+  // ngAfterViewInit(): void {
+  //   this.dataSource.sort = this.sort;
+  //   this.dataSource.paginator = this.paginator;
+  //   this.content.nativeElement.prependTo(document.body);
+  // }
+}
+
+function renameKey(obj: any, oldKey: any, newKey: any) {
+  obj[newKey] = obj[oldKey];
+  delete obj[oldKey];
 }

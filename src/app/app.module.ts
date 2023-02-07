@@ -13,14 +13,13 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { UsersComponent } from './user-component/users/users.component';
 import { RolesComponent } from './role-component/roles/roles.component';
-// import { DialogComponent } from './home/roles/dailog-box/dialog.component';
+import { DialogComponent } from './role-component/roles/dailog-box/dialog.component';
 import { UserRolesComponent } from './user-role-component/user-roles/user-roles.component'; 
 import { AddUserComponent } from './user-component/add-user/add-user.component';
 import { ParentUserComponent } from './user-component/user-component.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DialogModule } from './role-component/roles/dailog-box/dialog.module';
 import { ParentUserRoleComponent } from './user-role-component/parent-user-role.component'; 
 import { AddUserRoleComponent } from './user-role-component/add-user-role/add-user-role.component';
 import { ParentRoleComponent } from './role-component/parent-role.component';
@@ -37,7 +36,7 @@ import { AddRoleComponent } from './role-component/add-role/add-role.component';
     DashboardComponent,
     UsersComponent,
     RolesComponent,
-    // DialogComponent,
+    DialogComponent,
     UserRolesComponent,
     AddUserComponent,
     ParentUserComponent,
@@ -54,7 +53,6 @@ import { AddRoleComponent } from './role-component/add-role/add-role.component';
     HttpClientModule,
     MatDialogModule,
     NgbModalModule,
-    DialogModule,
 
     
     
