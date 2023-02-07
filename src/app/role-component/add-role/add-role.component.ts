@@ -68,21 +68,21 @@ export class AddRoleComponent implements OnInit {
     submitbutton(){
   console.log(this.form.value)
     }
-    onUnSelectAllOfBranch() {
-      this.form.value.branch_Id = ''
-      // this.form.reset()
-    }
-    onItemSelectOfBranch(items: any) {
+    // onUnSelectAllOfBranch() {
+    //   this.form.value.branch_Id = ''
+    //   // this.form.reset()
+    // }
+    // onItemSelectOfBranch(items: any) {
   
-    } onItemDeSelectOfBranch(items: any) {
-      if (this.form.value.branch_Id.length == 0) {
-        this.form.value.branch_Id = ''
+    // } onItemDeSelectOfBranch(items: any) {
+    //   if (this.form.value.branch_Id.length == 0) {
+    //     this.form.value.branch_Id = ''
   
-      }
-    }
-    onSelectAllOfBranch(items: any) {
+    //   }
+    // }
+    // onSelectAllOfBranch(items: any) {
   
-    }
+    // }
   
 
 
