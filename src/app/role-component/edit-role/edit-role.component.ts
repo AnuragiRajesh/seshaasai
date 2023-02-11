@@ -3,7 +3,6 @@ import { FormControl, FormBuilder, Validator, FormGroup, Validators } from '@ang
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DataService } from 'src/app/customServices/data.service';
-import { json } from 'stream/consumers';
 
 @Component({
   selector: 'app-edit-role',
@@ -11,15 +10,15 @@ import { json } from 'stream/consumers';
   styleUrls: ['./edit-role.component.scss']
 })
 export class EditRoleComponent implements OnInit {
-  selectedRoleAccess = ["E-mail only access" ]
+  // selectedRoleAccess = ["E-mail only access" ]
   dropdownSettings: IDropdownSettings = {};
   dropdownSettingsForView:IDropdownSettings = {};
   public roll_access: any
   public view: any
   public rights: any
   // public selectedRoleAccess:string[] =[]
-  public selectedViewAccess:string[]=[]
-  public selectedRightPermission:string[]=[]
+  // public selectedViewAccess:string[]=[]
+  // public selectedRightPermission:string[]=[]
 
   public form: FormGroup;
   constructor(private formBuilder: FormBuilder,
@@ -87,7 +86,7 @@ export class EditRoleComponent implements OnInit {
         Id: [params['Id'], Validators.required],
         Name: [params['Role Title'], Validators.required],
         RoleAccess: [ params['Role Access'], Validators.required],
-        View: [[params['View']], Validators.required],
+        View: [params['View'], Validators.required],
         Rights: [params['Rights/Permissions'], Validators.required],
         Description: [params['Description'], Validators.required],
   

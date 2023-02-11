@@ -41,4 +41,27 @@ export interface userRolesTableColumns {
   'Date of roll assigned': string;
 
 }
+
+
+
+export interface User {
+
+  UserName:string,
+  UserId:string
+}
+export interface Role {
+
+  Role:string,
+  RoleId:string
+}
+export interface States {
+
+  state:string
+}
+export interface Branches {
+
+  branchId:string
+}
+
+
 export interface Rollpoop_upInterface {Roll_Title:string, Roll_Description:string, Roll_Access:string, View_Access:string,Rights_Permissions:string}

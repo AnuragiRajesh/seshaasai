@@ -16,14 +16,14 @@
       <div style="display: flex; flex-direction: row; gap: 2rem; " >
         <div class="pt-1"><h6>First Name:</h6></div>
         <div class="mainMultiselect" >
-        <input formControlName="firstName"
+        <input class="inputBox " formControlName="firstName"
         placeholder="Enter First Name"
         > </div>
       </div>
     <div style="display: flex; flex-direction: row; gap: 2rem;">
       <div class="pt-1"><h6>Last Name:</h6></div>
       <div class="mainMultiselect" >  
-        <input formControlName="lastName"
+        <input class="inputBox " formControlName="lastName"
     placeholder="Enter Last Name"
    
     >
@@ -31,26 +31,21 @@
     </div>
     
     
-    <div style="display: flex; flex-direction: row; gap: 2rem; " >
+  <div style="display: flex; flex-direction: row; gap: 2rem; " >
       <div class="pt-1"><h6>Region:</h6></div>
-      <div class="mainMultiselect" >
-    <ng-multiselect-dropdown formControlName="branch_Id"
-    [placeholder]="'Select Branch ID'"
-    [settings]="dropdownSettings"
-    [data]="branch_Id"
-    (onSelect)="onItemSelectOfBranch($event)"
-    (onSelectAll)="onSelectAllOfBranch($event)"
-    (onDeSelect)="onItemDeSelectOfBranch($event)"
-    (onDeSelectAll)="onUnSelectAllOfBranch()">
-    </ng-multiselect-dropdown> </div>
-    </div>
+     <mat-form-field  appearance="fill"  >
+      <mat-select  placeholder="Select region" disableRipple   formControlName="region">
+        <mat-option *ngFor="let i of states" [value]="i">{{i}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div> 
     </div>
     
     <div style="display: flex; flex-direction: row; justify-content: space-around;">
     <div style="display: flex; flex-direction: row; gap: 2rem;">
       <div class="pt-1"><h6>Phone No:</h6></div>
       <div class="mainMultiselect" >
-    <input formControlName="phone"
+    <input class="inputBox " formControlName="phone"
     placeholder="Enter Phone"
     > </div>
     </div>
@@ -59,23 +54,26 @@
       <div class="pt-1"><h6>Email ID:</h6></div>
       <div class="mainMultiselect" >
     
-    <input type="email" placeholder="Enter Email" formControlName="email">
+    <input class="inputBox " type="email" placeholder="Enter Email" formControlName="email">
     
     </div>
     </div>
     
     <div style="display: flex; flex-direction: row; gap: 2rem; " >
       <div class="pt-1"><h6>Branch ID:</h6></div>
-      <div class="mainMultiselect" >
-    <ng-multiselect-dropdown formControlName="branch_Id"
-    [placeholder]="'Select Branch ID'"
-    [settings]="dropdownSettings"
-    [data]="branch_Id"
-    (onSelect)="onItemSelectOfBranch($event)"
-    (onSelectAll)="onSelectAllOfBranch($event)"
-    (onDeSelect)="onItemDeSelectOfBranch($event)"
-    (onDeSelectAll)="onUnSelectAllOfBranch()">
-    </ng-multiselect-dropdown> </div>
+
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Select region</mat-label>
+      <input type="text" matInput [formControl]="branches"  [matAutocomplete]="auto1">
+      <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayFnOfBranch">
+        <mat-option *ngFor="let option of selectedBranch | async" [value]="option"  >
+          {{option.branchId}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+
     </div>
     </div>
     </div>

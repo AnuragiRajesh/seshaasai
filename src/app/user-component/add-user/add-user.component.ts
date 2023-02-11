@@ -1,7 +1,12 @@
 import { Component,OnInit } from '@angular/core';
 import { FormControl, FormBuilder, Validator, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { stringify } from 'querystring';
+import { map, Observable, startWith } from 'rxjs';
+import { DataService } from 'src/app/customServices/data.service';
+import { States } from 'src/app/_interfaces/appInterfaces';
+import { Branches } from 'src/app/_interfaces/appInterfaces';
+// import { Role } from 'src/app/user-role-component/add-user-role/add-user-role.component';
 
 
 @Component({
@@ -10,64 +15,78 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
   styleUrls: ['./add-user.component.scss']
 })
 export class AddUserComponent implements OnInit {
-dropdownSettings: IDropdownSettings = {};
-public branch_Id: any
+states:any
+branches = new FormControl<string | Branches>('');
+Branches:Branches[]
+selectedBranch: Observable<Branches[]>;
+
+
+
 public form: FormGroup;
 constructor(private formBuilder: FormBuilder,
+  private service: DataService,
   private router: Router,){
 
 }
 ngOnInit(): void {
-  this.initForm()
-  this.branch_Id = [
-    { item_id: 1, item_text: 1000123 },
-    { item_id: 2, item_text: 1000124 },
-    { item_id: 3, item_text: 1000125 },
-    { item_id: 4, item_text: 1000126 },
-    { item_id: 5, item_text: 1000127 },
-    { item_id: 6, item_text: 1001128 },
-    { item_id: 7, item_text: 1000129 },
-    { item_id: 8, item_text: 1000130 },
-    { item_id: 9, item_text: 1000131 },
-     { item_id: 10, item_text: 1000132 },
 
-  ];
-  this.dropdownSettings = {
-    idField: 'item_id',
-    textField: 'item_text',
-    // showSelectedItemsAtTop: 5,
-    itemsShowLimit: 1,
-  };
+
+    this.states = ['East','West','North','South']
+    this.initForm()
+    // this.selectedState = this.region.valueChanges.pipe(
+    //   startWith(''),
+    //   map((value:any) => {
+    //     const Role = typeof value === 'string' ? value : value?.state;
+    //     return Role ? this._filterOfState(Role as string) : this.States.slice();
+    //   }),
+    // );
+
+  
+      this.Branches = this.service.getBranchIds().map((res:any)=>{
+        return {branchId:res}
+      })
+      console.log(  this.Branches )
+      this.initForm()
+      this.selectedBranch = this.branches.valueChanges.pipe(
+        startWith(''),
+        map((value:any) => {
+          const UserName = typeof value === 'string' ? value : value?.UserName;
+          return UserName ? this._filterOfBranch(UserName as string) : this.Branches.slice();
+        }),
+      );
+
+    
+
+
+  this.initForm()
 
 }
 initForm() {
   this.form = this.formBuilder.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    branch_Id: ['', Validators.required],
     phone: ['', Validators.required],
     email: ['', Validators.required],
+    region: ['', Validators.required],
 
   })}
 
   submitbutton(){
-console.log(this.form.value)
-  }
-  onUnSelectAllOfBranch() {
-    this.form.value.branch_Id = ''
-    // this.form.reset()
-  }
-  onItemSelectOfBranch(items: any) {
+let formData = {...this.form.value, ...this.branches.value as object}
+console.log(formData)
+ }
+  
 
-  } onItemDeSelectOfBranch(items: any) {
-    if (this.form.value.branch_Id.length == 0) {
-      this.form.value.branch_Id = ''
 
-    }
-  }
-  onSelectAllOfBranch(items: any) {
 
-  }
+       displayFnOfBranch(branch: Branches): string {
+        return branch && branch.branchId ? branch.branchId : '';
+      }
+    
+      private _filterOfBranch(branch: string): Branches[] {
+        const filterValue = branch.toLowerCase();
+        return this.Branches.filter(option => option.branchId.toLowerCase().includes(filterValue));
+      }
 
 
 
