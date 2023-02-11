@@ -12,6 +12,7 @@ export interface dashboardTableColumns {
   "moreDetails": []
 }
 export interface usersTableColumns {
+  "Id":string
   "Name": string;
   'Date Added': string;
   "Region": string;
@@ -20,13 +21,13 @@ export interface usersTableColumns {
   "Email ID": string;
 
 }
+
 export interface rolesTableColumns {
   "Roll Title": string;
   'Date Added': string;
   "Roll Access": string;
   'View': string;
   "Rights/Permissions": string;
-  'Phone Number': number;
 
 }
 

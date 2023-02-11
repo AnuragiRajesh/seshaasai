@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, AfterViewInit, ElementRef,ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit, ElementRef,ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MatSort } from '@angular/material/sort';
@@ -13,6 +13,7 @@ import { DialogComponent } from './dailog-box/dialog.component';
 import * as XLSX from 'xlsx';
 // import { MatDialog ,MatDialogConfig} from '@angular/material/dialog';
 import { stat } from 'fs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-roles',
@@ -31,8 +32,8 @@ import { stat } from 'fs';
 }) 
 export class RolesComponent implements OnInit{
   poop_up:Rollpoop_upInterface={Roll_Title:"Staff", Roll_Description:"description is yet to be updated from the backend", Roll_Access:"Eamil only access", View_Access:"All metrics",Rights_Permissions:"View only"}
- data:any
-//  :rolesTableColumns[]= [{"Roll Title":" Sales Head","Date Added":"19/112022", "Roll Access":"All Access","View":"No. of closed accounts only","Rights/Permissions":"View and edit limited", "Phone Number":5678092354},{"Roll Title":"Admin","Date Added":"19/112022", "Roll Access":"E-mail only","View":"Audit only","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Technical","Date Added":"19/112022", "Roll Access":"All Access","View":"Inventory check only","Rights/Permissions":"View and edit all", "Phone Number":5678092354},{"Roll Title":"Marketting Manager","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"No. of open accounts only","Rights/Permissions":"View and edit all", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"E-mail only","View":"All metrics","Rights/Permissions":"View and edit limited", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},]
+ data:rolesTableColumns[]
+//  = [{"Roll Title":" Sales Head","Date Added":"19/112022", "Roll Access":"All Access","View":"No. of closed accounts only","Rights/Permissions":"View and edit limited", "Phone Number":5678092354},{"Roll Title":"Admin","Date Added":"19/112022", "Roll Access":"E-mail only","View":"Audit only","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Technical","Date Added":"19/112022", "Roll Access":"All Access","View":"Inventory check only","Rights/Permissions":"View and edit all", "Phone Number":5678092354},{"Roll Title":"Marketting Manager","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"No. of open accounts only","Rights/Permissions":"View and edit all", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"E-mail only","View":"All metrics","Rights/Permissions":"View and edit limited", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},]
   displayedColumns1:string[] = ['Role Title','Date Added', 'Role Access',  'View',  'Rights/Permissions',]
   displayedColumns:string[] = [...this.displayedColumns1, 'action'];
   dataSource: any
@@ -44,6 +45,9 @@ export class RolesComponent implements OnInit{
   expandedElement: any;
  
   constructor(private service: DataService,
+    private router: Router,
+    private route: ActivatedRoute,
+    // private cdr: ChangeDetectorRef,
     private modalService: NgbModal,public dialog: MatDialog
     ) {
     this.dataSource = new MatTableDataSource();
@@ -53,6 +57,11 @@ export class RolesComponent implements OnInit{
     dialogConfig.backdropClass = 'dialog-backdrop';
     dialogConfig.disableClose = true;
     this.dialog.open(DialogComponent,dialogConfig);
+  }
+  deleteRole(id:any){
+   this.service.deleteRoleData(id).subscribe((res:any)=>{
+  })
+  // this.cdr.detectChanges();
   }
   openDialog(content:any,element:any): void {
     this.poop_up.Roll_Title=element['Role Title']
@@ -74,6 +83,19 @@ export class RolesComponent implements OnInit{
       console.log(error);
     });
   }
+  editRow(element:any){
+    // debugger
+    console.log(element)
+    this.router.navigate(['/home/rolesComponent/editRole'], {
+      queryParams: element
+    });}
+  // saveRow(element:any){
+  //   console.log("onSave of Row",element)
+  // }
+  // cancelEdit(element:any)
+  // {
+  //   console.log("onCancel of Row",element)
+  // }
   ExportTOExcel()
   {
 
@@ -91,7 +113,8 @@ export class RolesComponent implements OnInit{
       res.forEach((obj: any) => renameKey(obj, 'Name', 'Role Title'));
       res.forEach((obj: any) => renameKey(obj, 'Created_Date', 'Date Added'));
       res.forEach((obj: any) => renameKey(obj, 'RoleAccess', 'Role Access'));
-      res.forEach((obj: any) => renameKey(obj, 'Rights/Permission', 'Rights/Permissions'));
+      res.forEach((obj: any) => renameKey(obj, 'Rights', 'Rights/Permissions'));
+      console.log(res)
   this.data=res
   this.dataSource = new MatTableDataSource(res);
 

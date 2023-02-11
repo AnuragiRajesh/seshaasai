@@ -11,6 +11,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -27,6 +29,8 @@ import { MatTableDataSource } from '@angular/material/table';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    MatAutocompleteModule,
+    MatInputModule,
     // MatTableDataSource,
 
 
@@ -44,6 +48,8 @@ import { MatTableDataSource } from '@angular/material/table';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    MatAutocompleteModule,
+    MatInputModule,
     // MatTableDataSource,
     NgMultiSelectDropDownModule,
 

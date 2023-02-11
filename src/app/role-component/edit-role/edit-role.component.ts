@@ -1,27 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, Validator, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DataService } from 'src/app/customServices/data.service';
 import { json } from 'stream/consumers';
 
 @Component({
-  selector: 'app-add-role',
-  templateUrl: './add-role.component.html',
-  styleUrls: ['./add-role.component.scss']
+  selector: 'app-edit-role',
+  templateUrl: './edit-role.component.html',
+  styleUrls: ['./edit-role.component.scss']
 })
-export class AddRoleComponent implements OnInit {
+export class EditRoleComponent implements OnInit {
+  selectedRoleAccess = ["E-mail only access" ]
   dropdownSettings: IDropdownSettings = {};
   dropdownSettingsForView:IDropdownSettings = {};
   public roll_access: any
   public view: any
   public rights: any
-  public selectedItems:string[]
+  // public selectedRoleAccess:string[] =[]
+  public selectedViewAccess:string[]=[]
+  public selectedRightPermission:string[]=[]
 
   public form: FormGroup;
   constructor(private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
     private service: DataService,
-    private router: Router,) {
+) {
 
   }
   //  = [
@@ -30,12 +34,12 @@ export class AddRoleComponent implements OnInit {
   //   { item_id: 3, item_text: 'Pune' }
   // ];
   ngOnInit(): void {
-    this.initForm()
+    
+  
     this.roll_access = [
-   'All Access' ,
+      'All Access' ,
      "Mobile number access" 
-   , "Email access" 
-
+   , "Email access"
     ];
     this.view = [
       "Audit",
@@ -46,9 +50,9 @@ export class AddRoleComponent implements OnInit {
 
     ];
     this.rights = [
-     'View' ,
- "View and edit all",
-     "View and edit limited" 
+      'View' ,
+      "View and edit all",
+          "View and edit limited" 
 
     ];
 
@@ -75,44 +79,39 @@ export class AddRoleComponent implements OnInit {
       itemsShowLimit: 1,
     };
 
-  }
-  initForm() {
-    this.form = this.formBuilder.group({
-      Name: ['', Validators.required],
-      RoleAccess: ['', Validators.required],
-      View: ['', Validators.required],
-      Rights: ['', Validators.required],
-      Description: ['', Validators.required],
 
-    })
+
+    this.route.queryParams.subscribe(params => {
+      console.log(params,"hhh") 
+      this.form = this.formBuilder.group({
+        Id: [params['Id'], Validators.required],
+        Name: [params['Role Title'], Validators.required],
+        RoleAccess: [ params['Role Access'], Validators.required],
+        View: [[params['View']], Validators.required],
+        Rights: [params['Rights/Permissions'], Validators.required],
+        Description: [params['Description'], Validators.required],
+  
+      })
+
+// this.selectedRoleAccess.push(params['Role Access'])
+
+
+    });
+
+
+
+
+
 
   }
+
 
   submitbutton() {
     console.log(this.form.value, "haresshvvvcvvv")
-    this.service.postRoleData(this.form.value).subscribe((res:any)=>{
+    this.service.updateRoleData(this.form.value.Id,this.form.value).subscribe((res:any)=>{
         console.log(res,"response from the role post api")
     })
   }
-  // onUnSelectAllOfBranch() {
-  //   this.form.value.branch_Id = ''
-  //   // this.form.reset()
-  // }
-  // onItemSelectOfBranch(items: any) {
-
-  // } onItemDeSelectOfBranch(items: any) {
-  //   if (this.form.value.branch_Id.length == 0) {
-  //     this.form.value.branch_Id = ''
-
-  //   }
-  // }
-  // onSelectAllOfBranch(items: any) {
-
-  // }
-
-
-
-
 
 
 

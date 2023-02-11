@@ -24,6 +24,7 @@ import { ParentUserRoleComponent } from './user-role-component/parent-user-role.
 import { AddUserRoleComponent } from './user-role-component/add-user-role/add-user-role.component';
 import { ParentRoleComponent } from './role-component/parent-role.component';
 import { AddRoleComponent } from './role-component/add-role/add-role.component';
+import { EditRoleComponent } from './role-component/edit-role/edit-role.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { AddRoleComponent } from './role-component/add-role/add-role.component';
     ParentUserRoleComponent,
     AddUserRoleComponent,
     ParentRoleComponent,
-    AddRoleComponent
+    AddRoleComponent,
+    EditRoleComponent
     
   ],
   imports: [

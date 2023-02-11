@@ -13,6 +13,10 @@ import { ParentRoleComponent } from './role-component/parent-role.component';
 import { AddUserRoleComponent } from './user-role-component/add-user-role/add-user-role.component';
 import { UserRolesComponent } from './user-role-component/user-roles/user-roles.component';
 import { AddRoleComponent } from './role-component/add-role/add-role.component';
+import { EditRoleComponent } from './role-component/edit-role/edit-role.component';
+
+
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent,
@@ -45,6 +49,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'role', pathMatch: 'full' },
       { path: 'role', component:RolesComponent },
       { path: 'addRole', component:AddRoleComponent },
+      { path: 'editRole', component:EditRoleComponent }
     ]
   },
   {

@@ -9,9 +9,9 @@
             font: normal normal bold 20px/17px Montserrat;
             letter-spacing: 0.5px;
             color: #43425D;
-            opacity: 1;">Add new role</div>
+            opacity: 1;">Edit role</div>
             <a style="display: flex;" [routerLink]="['/home/rolesComponent/role']" class="addNewRoleAndUserButton">
-                <mat-icon>chevron_left</mat-icon>
+                <mat-icon>chevron_left</mat-icon>   
                 <div><a>Back to list</a></div>
             </a>
 
@@ -38,7 +38,7 @@
                             </ng-multiselect-dropdown>
                         </div> -->
                         <mat-form-field  appearance="fill"  >
-                            <mat-select  placeholder="Select roll access" disableRipple  formControlName="RoleAccess">
+                            <mat-select  placeholder="Select roll access" disableRipple   formControlName="RoleAccess">
                               <mat-option *ngFor="let i of roll_access" [value]="i">{{i}}</mat-option>
                             </mat-select>
                           </mat-form-field>

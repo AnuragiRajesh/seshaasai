@@ -6,9 +6,11 @@
 
 <button class="exportButton" (click)="ExportTOExcel()" mat-raised-button color="primary"  
   >Export as Excel</button></div>
-<div class="example-container mat-elevation-z8" #Table>
+<div class="example-container " #Table>
 	<!-- <div>{{data[0]}}</div>  -->
-	<mat-table  #table [dataSource]="dataSource" multiTemplateDataRows matSort  class="mat-elevation-z8"  >
+	<mat-table  #table [dataSource]="dataSource" multiTemplateDataRows matSort
+	
+	   >
 		  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns1">
 			<mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef mat-sort-header> {{column}} </mat-header-cell>
 			<mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
