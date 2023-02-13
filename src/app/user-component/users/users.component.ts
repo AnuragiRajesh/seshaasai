@@ -61,6 +61,12 @@ export class UsersComponent implements OnInit ,AfterViewInit{
   navigateToAdduser(){
     // this.Route.navigate(['user/addUser'])
   }
+  editRow(element:any){
+    // debugger
+    console.log(element)
+    this.router.navigate(['/home/userComponent/editUser'], {
+      queryParams: element
+    });}
  
   ngAfterViewInit(): void {
     // this.dataSource.sort = this.sort;

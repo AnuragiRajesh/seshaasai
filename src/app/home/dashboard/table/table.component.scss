@@ -7,3 +7,8 @@
   .mat-table-without-lines th {
     border: none;
   }
+
+
+   tr.mat-mdc-row:hover {
+      background-color: lightgray;
+  }

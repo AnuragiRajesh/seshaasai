@@ -28,3 +28,22 @@
     display: inline-flex;
     min-width: 100%;
 }
+
+
+.addingNewRoleUser{
+    text-align: left;
+    font: normal normal bold 20px/17px Montserrat;
+    letter-spacing: 0.5px;
+    color: #43425D;
+    opacity: 1;
+}
+.inputLables{
+    display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center; gap: 1rem;
+}
+
+// tr.mat-mdc-row:hover {
+//     background-color: lightgray;
+// }

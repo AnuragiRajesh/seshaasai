@@ -37,7 +37,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild('MatPaginator', { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns2: string[] = ['Activity', 'User','Activity Time','Inventory Count', 'Download'];
-  
+  hover = false;
   expandedElement: any;
 
   constructor(private service: DataService) {

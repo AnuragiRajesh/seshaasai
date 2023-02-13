@@ -24,7 +24,7 @@
       <ng-container matColumnDef="action" >
           <th class="p-2" mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef > Edit </th>
           <td mat-cell *matCellDef="let element">
-              <button  mat-icon-button  class="matIconButton"
+              <button  mat-icon-button  class="matIconButton" (click)=" editRow(element)"
             >
               <mat-icon>edit</mat-icon>
               

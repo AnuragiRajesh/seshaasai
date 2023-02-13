@@ -27,6 +27,9 @@ export class DataService {
   getUserData() {
     return this.http.get(this._User_API);
   }
+  postUserData(params:any) {
+    return this.http.post(`${this._User_API}/AddUser`, params);
+  }
   getUserWithOutRoleData() {
     return this.http.get(this._User_withOut_Role__API);
   }

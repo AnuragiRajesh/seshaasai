@@ -4,33 +4,7 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/customServices/data.service';
 import { map, Observable, of, startWith } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export interface User {
-
-  UserName:string,
-  UserId:string
-}
-export interface Role {
-
-  Role:string,
-  RoleId:string
-}
-
-
+import { Role, User } from 'src/app/_interfaces/appInterfaces';
 
 @Component({
   selector: 'app-add-user-role',

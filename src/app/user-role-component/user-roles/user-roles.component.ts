@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit, AfterViewInit, ElementRef } from '@angula
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/customServices/data.service';
 import { userRolesTableColumns } from 'src/app/_interfaces/appInterfaces';
 import * as XLSX from 'xlsx';
@@ -22,7 +23,7 @@ export class UserRolesComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   expandedElement: any;
-  constructor(private service: DataService) {
+  constructor(private service: DataService,private router: Router,) {
   }
   ExportTOExcel()
   {
@@ -35,6 +36,12 @@ export class UserRolesComponent implements OnInit {
     XLSX.writeFile(wb, 'TablesSizee.xlsx');
     
   }
+  editRow(element:any){
+    // debugger
+    console.log(element)
+    this.router.navigate(['/home/userRolesComponent/editUsereRole'], {
+      queryParams: element
+    });}
 
   ngOnInit(): void {
     this.service.getUserRoleData().subscribe((res:any)=>{

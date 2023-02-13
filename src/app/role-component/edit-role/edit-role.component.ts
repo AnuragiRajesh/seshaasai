@@ -81,11 +81,11 @@ export class EditRoleComponent implements OnInit {
 
 
     this.route.queryParams.subscribe(params => {
-      console.log(params,"hhh") 
+      console.log(params,"hhh", params['Role Access']) 
       this.form = this.formBuilder.group({
         Id: [params['Id'], Validators.required],
         Name: [params['Role Title'], Validators.required],
-        RoleAccess: [ params['Role Access'], Validators.required],
+        RoleAccess:  [params['Role Access'], Validators.required],
         View: [params['View'], Validators.required],
         Rights: [params['Rights/Permissions'], Validators.required],
         Description: [params['Description'], Validators.required],

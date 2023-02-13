@@ -33,13 +33,7 @@ ngOnInit(): void {
 
     this.states = ['East','West','North','South']
     this.initForm()
-    // this.selectedState = this.region.valueChanges.pipe(
-    //   startWith(''),
-    //   map((value:any) => {
-    //     const Role = typeof value === 'string' ? value : value?.state;
-    //     return Role ? this._filterOfState(Role as string) : this.States.slice();
-    //   }),
-    // );
+
 
   
       this.Branches = this.service.getBranchIds().map((res:any)=>{
@@ -72,8 +66,12 @@ initForm() {
   })}
 
   submitbutton(){
+    //combined two forms 
 let formData = {...this.form.value, ...this.branches.value as object}
 console.log(formData)
+this.service.postUserData(formData).subscribe((res:any)=>{
+  console.log("respone after the postuser api", res)
+})
  }
   
 

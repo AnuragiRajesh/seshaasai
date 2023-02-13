@@ -1,8 +1,8 @@
 <div class="content-wrapper" style="background-color: #FFFFFF; ">
     <div class="m-4">
         <div class="d-flex justify-content-between">
-            <div class="addingNewRoleUser">Assign new roles</div>
-           <a style="display: flex;"  [routerLink]="['/home/userRolesComponent/userRoles']" class="addNewRoleAndUserButton">	<mat-icon>chevron_left</mat-icon> <div><a>Back to list</a></div></a>
+            <div class="addingNewRoleUser">Edit assgined role</div>
+           <a style="display: flex;"  [routerLink]="['/home/userRolesComponent/usereRole']" class="addNewRoleAndUserButton">	<mat-icon>chevron_left</mat-icon> <div><a>Back to list</a></div></a>
            
         </div>
         <hr>
@@ -11,33 +11,20 @@
                   
                     <div  class="inputLables">
                         <div >
-                            <h6>User Name:</h6>
+                            <h6  style="font-weight: 600;">User Name:</h6>
                         </div>
-                        <div >
+                        <div class="inputLables userToEditassginedRole" >
 
 
-
-
-
-                            <mat-form-field class="example-full-width" style="margin-top: 1rem;" appearance="fill">
-                                <mat-label>Select user</mat-label>
-                                <input type="text" matInput [formControl]="users"  [matAutocomplete]="auto1">
-                                <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayFnOfUsers">
-                                  <mat-option *ngFor="let option of filteredOptionsOfUsers | async" [value]="option"  (click)="selectOptionOfUser(option)">
-                                    {{option.UserName}}
-                                  </mat-option>
-                                </mat-autocomplete>
-                              </mat-form-field>
-
-
+                              <h5>{{user}}</h5>
                            
                         </div>
                     </div>
 
 
                     <div class="inputLables">
-                        <div >
-                            <h6>Role Title:</h6>
+                        <div  >
+                            <h6 style="font-weight: 600;">Role Title:</h6>
                         </div>
                         <div >
 
@@ -47,16 +34,32 @@
 
                             <mat-form-field style="margin-top: 1rem;" class="example-full-width" appearance="fill">
                                 <mat-label>Select a role</mat-label>
-                                <input type="text" matInput [formControl]="roles"  [matAutocomplete]="auto">
-                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFnOfRoles">
+                                <input type="text" matInput [formControl]="role"  [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete" 
+                                [displayWith]="displayFnOfRoles">
                                   <mat-option *ngFor="let option of filteredOptionsOfRoles | async" [value]="option"  (click)="selectOptionOfRole(option)">
-                                    {{option}}
+                                    {{option.Role}}
                                   </mat-option>
                                 </mat-autocomplete>
                               </mat-form-field>
 
 
                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </div>
                     </div>
                     <div class="mainMultiselect" style="display: inline-block; width:  30%; margin-top: 1.5rem; text-align: center;">

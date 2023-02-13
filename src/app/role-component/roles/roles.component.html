@@ -59,13 +59,13 @@
         <div  #Table>
 	<mat-table  #table [dataSource]="dataSource" multiTemplateDataRows matSort      >
         <ng-container  [matColumnDef]="column" *ngFor="let column of displayedColumns1">
-          <th mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef mat-sort-header> {{column}} </th>
-          <td mat-cell  *matCellDef="let element"> {{element[column]}} </td>
+          <mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef mat-sort-header> {{column}} </mat-header-cell>
+          <mat-cell  *matCellDef="let element"> {{element[column]}} </mat-cell>
   </ng-container>
 
       <ng-container matColumnDef="action" >
-          <th class="pt-2" mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef > Read/Edit/Delete </th>
-          <td mat-cell *matCellDef="let element">
+          <mat-header-cell class="pt-2"  style="background-color: #F4F4F4;" *matHeaderCellDef > Read/Edit/Delete </mat-header-cell>
+          <mat-cell *matCellDef="let element">
             <button  mat-icon-button class="matIconButton" (click)=" openDialog(content,element)" >
             <mat-icon>remove_red_eye</mat-icon></button>
               <button  mat-icon-button class="matIconButton" matTooltip="Edit" (click)=" editRow(element)" >
@@ -75,10 +75,10 @@
             <mat-icon>delete</mat-icon>
             </button>
   
-        </td>
+        </mat-cell>
       </ng-container>	
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></tr>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></mat-row>
       <!-- <mat-row *matRowDef="let row; columns: ['expandedDetail'];"
           [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'" style="overflow: hidden">
       </mat-row> -->
