@@ -35,14 +35,13 @@ export class EditUserComponent implements OnInit {
       this.branches.setValue({branchId:`${res['Branch ID']}`})
       this.form = this.formBuilder.group({
         Id: [res.Id, Validators.required],
-        firstName: [res.User, Validators.required],
+        firstName: [res.FirstName, Validators.required],
         lastName: [res.LastName, Validators.required],
         phone: [res['Phone Number'], Validators.required],
         email: [res['Email ID'], Validators.required],
         region: [res.Region, Validators.required],
     
       })
-     console.log(res,"jjjjjbbjkb")
     })
       this.states = ['East','West','North','South']
   
