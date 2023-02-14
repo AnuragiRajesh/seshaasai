@@ -96,6 +96,15 @@ export class RolesComponent implements OnInit{
   // {
   //   console.log("onCancel of Row",element)
   // }
+
+  //  exportAsExcelFile(json: any, excelFileName: string): void {
+  //   debugger
+  //   const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json.filteredData);
+  //   const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+  //   XLSX.writeFile(workbook, excelFileName + '.xlsx');
+  // }
+
+
   ExportTOExcel()
   {
 

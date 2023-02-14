@@ -78,10 +78,11 @@ console.log(res)
 
  
   submitbutton() {
-    this.roleID?alert( this.roleID):alert("00000")
-   console.log( {roleUserId:this.roleUserID,roleId:this.roleID})
-    // this.service.PostUserRoleData({userId:this.userID,roleId:this.roleID}).subscribe((res:any)=>{
-      console.log(this.roleUserID ,"hhhhh",this.roleID)
+    let data = {UserId:this.roleUserID,RoleId:this.roleID}
+   console.log( )
+    this.service.updateAssignedRole(data).subscribe((res:any)=>{
+      console.log(res,"response from edit assigned role")
+    })
       
     // })
   }

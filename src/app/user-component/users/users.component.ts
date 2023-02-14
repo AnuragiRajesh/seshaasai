@@ -47,12 +47,18 @@ export class UsersComponent implements OnInit ,AfterViewInit{
   
   ngOnInit(): void {
     this.service.getUserData().subscribe((res:any)=>{
+      // console.log(res)
+      // res.forEach((obj: any) => renameKey(obj, 'LastName', 'lastName'));
       res.forEach((obj: any) => renameKey(obj, 'PhoneNumber', 'Phone Number'));
       res.forEach((obj: any) => renameKey(obj, 'Created_Date', 'Date Added'));
       res.forEach((obj: any) => renameKey(obj, 'BranchID', 'Branch ID'));
       res.forEach((obj: any) => renameKey(obj, 'Email', 'Email ID'));
       res.forEach((obj: any) => renameKey(obj, 'UserName', 'User'));
+      res.map((ele:any)=>{
+        // return 
+      })
       console.log(res,"kkkkk")
+
       this.dataSource = new MatTableDataSource<usersTableColumns>(res);
       this.dataSource.paginator = this.paginator;
 

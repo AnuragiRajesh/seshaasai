@@ -96,7 +96,7 @@ this.userID=option.UserId
   }
  
   submitbutton() {
-    this.service.PostUserRoleData({userId:this.userID,roleId:this.roleID}).subscribe((res:any)=>{
+    this.service.assignNewRole({userId:this.userID,roleId:this.roleID}).subscribe((res:any)=>{
       console.log(res)
       
     })

@@ -6,7 +6,6 @@ import { map, Observable, startWith } from 'rxjs';
 import { DataService } from 'src/app/customServices/data.service';
 import { States } from 'src/app/_interfaces/appInterfaces';
 import { Branches } from 'src/app/_interfaces/appInterfaces';
-// import { Role } from 'src/app/user-role-component/add-user-role/add-user-role.component';
 
 
 @Component({
@@ -32,10 +31,12 @@ export class EditUserComponent implements OnInit {
   
   
     this.route.queryParams.subscribe((res:any)=>{
+      console.log(res,"hhh")
       this.branches.setValue({branchId:`${res['Branch ID']}`})
       this.form = this.formBuilder.group({
+        Id: [res.Id, Validators.required],
         firstName: [res.User, Validators.required],
-        lastName: ['', Validators.required],
+        lastName: [res.LastName, Validators.required],
         phone: [res['Phone Number'], Validators.required],
         email: [res['Email ID'], Validators.required],
         region: [res.Region, Validators.required],
@@ -44,7 +45,6 @@ export class EditUserComponent implements OnInit {
      console.log(res,"jjjjjbbjkb")
     })
       this.states = ['East','West','North','South']
-      // this.initForm()
   
   
     
@@ -64,25 +64,19 @@ export class EditUserComponent implements OnInit {
       
   
   
-    // this.initForm()
+
   
   }
-  // initForm() {
-  //   this.form = this.formBuilder.group({
-  //     firstName: ['', Validators.required],
-  //     lastName: ['', Validators.required],
-  //     phone: ['', Validators.required],
-  //     email: ['', Validators.required],
-  //     region: ['', Validators.required],
-  
-  //   })}
+
   
     submitbutton(){
       // combined two forms 
   let formData = {...this.form.value, ...this.branches.value as object}
   console.log(formData)
-  // this.service.postUserData(formData).subscribe((res:any)=>{
-  //   console.log("respone after the postuser api", res)
+  this.service.updateUserData(formData).subscribe((res:any)=>{
+    console.log(res, "response from the update api ")
+  })
+ 
   // })
    }
     

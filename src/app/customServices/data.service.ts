@@ -30,6 +30,9 @@ export class DataService {
   postUserData(params:any) {
     return this.http.post(`${this._User_API}/AddUser`, params);
   }
+  updateUserData(params:any) {
+    return this.http.put(`${this._User_API}`, params);
+  }
   getUserWithOutRoleData() {
     return this.http.get(this._User_withOut_Role__API);
   }
@@ -49,8 +52,11 @@ export class DataService {
   getUserRoleData() {
     return this.http.get(this._User_role_API)
   }
-  PostUserRoleData(params: any) {
+  assignNewRole(params: any) {
     return this.http.post(`${this._Role_API}/AssignRole`, params)
+  }
+  updateAssignedRole(params: any) {
+    return this.http.put(`${this._Role_API}/UpdateAssignRoleById`, params)
   }
 
   // getImage(id: number) {

@@ -1,11 +1,7 @@
 <div class="content-wrapper" style="background-color: #FFFFFF; "> 
     <div  class="m-4" >
 <div style="display: flex; flex-direction: row; justify-content: space-between; " >
-    <div style="text-align: left;
-    font: normal normal bold 20px/17px Montserrat;
-    letter-spacing: 0.5px;
-    color: #43425D;
-    opacity: 1;">User Roles</div>
+    <div  class="addingNewRoleUser">User Roles</div>
     <!-- <button class="addNewRoleAndUserButton"><i class="fa-light fa-plus"></i> <a >Assign new role</a></button> -->
     <a  [routerLink]="['/home/userRolesComponent/addUsereRole']" class="addNewRoleAndUserButton"><i class="fa-light fa-plus"></i> Assign new role</a>
 </div>
@@ -17,13 +13,13 @@
         <div  class="example-container mat-elevation-z8" #Table>
 	<mat-table  #table [dataSource]="dataSource" multiTemplateDataRows  matSort   >
         <ng-container  [matColumnDef]="column" *ngFor="let column of displayedColumns1">
-          <th mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef mat-sort-header> {{column}} </th>
-          <td mat-cell  *matCellDef="let element"> {{element[column]}} </td>
+          <mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef mat-sort-header> {{column}} </mat-header-cell>
+          <mat-cell  *matCellDef="let element"> {{element[column]}} </mat-cell >
   </ng-container>
 
       <ng-container matColumnDef="action" >
-          <th class="p-2" mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef > Edit </th>
-          <td mat-cell *matCellDef="let element">
+          <mat-header-cell   style="background-color: #F4F4F4;" *matHeaderCellDef > Edit </mat-header-cell>
+          <mat-cell *matCellDef="let element">
               <button  mat-icon-button  class="matIconButton" (click)=" editRow(element)"
             >
               <mat-icon>edit</mat-icon>
@@ -31,10 +27,10 @@
       </button>
  
   
-    </td>
+    </mat-cell>
       </ng-container>	
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></tr>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></mat-row>
     
   </mat-table>
 </div>
