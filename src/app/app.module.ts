@@ -13,7 +13,6 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { UsersComponent } from './user-component/users/users.component';
 import { RolesComponent } from './role-component/roles/roles.component';
-import { DialogComponent } from './role-component/roles/dailog-box/dialog.component';
 import { UserRolesComponent } from './user-role-component/user-roles/user-roles.component'; 
 import { AddUserComponent } from './user-component/add-user/add-user.component';
 import { ParentUserComponent } from './user-component/user-component.component';
@@ -27,6 +26,8 @@ import { AddRoleComponent } from './role-component/add-role/add-role.component';
 import { EditRoleComponent } from './role-component/edit-role/edit-role.component';
 import { EditUserRoleComponent } from './user-role-component/edit-user-role/edit-user-role.component';
 import { EditUserComponent } from './user-component/edit-user/edit-user.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DialogComponent } from './dailog-box/dialog.component';
 // import { ConfirmDialogComponent } from './dialog-box/confirm-dialog/confirm-dialog.component';
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { EditUserComponent } from './user-component/edit-user/edit-user.componen
     HttpClientModule,
     MatDialogModule,
     NgbModalModule,
+    ReactiveFormsModule,
 
     
     

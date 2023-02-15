@@ -2,18 +2,18 @@
     <div class="m-4">
         <div class="d-flex justify-content-between">
             <div class="addingNewRoleUser">Edit assgined role</div>
-           <a style="display: flex;"  [routerLink]="['/home/userRolesComponent/usereRole']" class="addNewRoleAndUserButton">	<mat-icon>chevron_left</mat-icon> <div><a>Back to list</a></div></a>
+           <a style="display: flex;"  [routerLink]="['/home/userRolesComponent/userRoles']" class="addNewRoleAndUserButton">	<mat-icon>chevron_left</mat-icon> <div><a>Back to list</a></div></a>
            
         </div>
         <hr>
             <div style="display: flex; flex-direction: column; flex-wrap: wrap; gap: 2rem; text-align: center; ">
                 <div class="d-flex flex-row justify-content-around" >
                   
-                    <div  class="inputLables">
+                    <div matTooltip="Read only"  class="inputLables">
                         <div >
                             <h6  style="font-weight: 600;">User Name:</h6>
                         </div>
-                        <div class="inputLables userToEditassginedRole" >
+                        <div  class="inputLables userToEditassginedRole" >
 
 
                               <h5>{{user}}</h5>

@@ -44,12 +44,12 @@
 		<ng-container matColumnDef="action" >
 			<mat-header-cell style="background-color: #F4F4F4;"  *matHeaderCellDef > Know more </mat-header-cell>
 			<mat-cell *matCellDef="let element">
-				<button  mat-icon-button *ngIf="expandedElement != element" style="text-decoration: none; border: none; background-color: #FFFFFF;"
+				<button  mat-icon-button *ngIf="expandedElement != element" matTooltip="know" style="text-decoration: none; border: none; background-color: #FFFFFF;"
                 [class.expanded]="expandedElement == element"
                 (click)="expandedElement = element">
                 <mat-icon>add_circle_outline</mat-icon>
         </button>
-				<button  mat-icon-button *ngIf="expandedElement == element"  style="text-decoration: none; border: none; background-color: #FFFFFF;"
+				<button  mat-icon-button *ngIf="expandedElement == element"  matTooltip="close" style="text-decoration: none; border: none; background-color: #FFFFFF;"
                 [class.expanded]="expandedElement == undefined"
                 (click)="expandedElement = undefined">
                 <mat-icon>cancel</mat-icon>

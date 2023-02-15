@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
+  public _Login_API:string= 'http://172.17.131.162:3100/api/Login'
   public _Dashboard_API: string = "http://172.17.131.162:8100/api/PushData/GetData";
   public _User_role_API: string = "http://172.17.131.162:3100/api/Users/GetClaims"
   public _User_API: string = "http://172.17.131.162:3100/api/Users"
@@ -21,9 +22,24 @@ export class DataService {
 
 
   constructor(public http: HttpClient) { }
+ loginApi(parmas:any): Promise<any>  {
+    // return this.http.post(this._Login_API,parmas);
+
+    return fetch(this._Login_API, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(parmas)
+    })
+  }
   getDashboardData() {
     return this.http.get(this._Dashboard_API);
   }
+
+  /* 
+  @  Handled all the User component Apis
+   */
   getUserData() {
     return this.http.get(this._User_API);
   }
@@ -33,6 +49,15 @@ export class DataService {
   updateUserData(params:any) {
     return this.http.put(`${this._User_API}`, params);
   }
+  deleteUserApi(Id:any) {
+    console.log(Id,"hhhh")
+    return this.http.delete(`${this._User_API}/${Id}`);
+  }
+
+
+
+
+
   getUserWithOutRoleData() {
     return this.http.get(this._User_withOut_Role__API);
   }
@@ -59,6 +84,11 @@ export class DataService {
     return this.http.put(`${this._Role_API}/UpdateAssignRoleById`, params)
   }
 
+
+
+  isLoggedIn(){
+    return true
+  }
   // getImage(id: number) {
   //   return this.http.get(this._url)
   //                   .pipe(first(item => item.id === id));

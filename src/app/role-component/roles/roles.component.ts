@@ -9,11 +9,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Rollpoop_upInterface } from 'src/app/_interfaces/appInterfaces';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogComponent } from './dailog-box/dialog.component';
 import * as XLSX from 'xlsx';
 // import { MatDialog ,MatDialogConfig} from '@angular/material/dialog';
 import { stat } from 'fs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogComponent } from 'src/app/dailog-box/dialog.component';
 
 @Component({
   selector: 'app-roles',
@@ -32,13 +32,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 }) 
 export class RolesComponent implements OnInit{
   poop_up:Rollpoop_upInterface={Roll_Title:"Staff", Roll_Description:"description is yet to be updated from the backend", Roll_Access:"Eamil only access", View_Access:"All metrics",Rights_Permissions:"View only"}
- data:rolesTableColumns[]
+  data:any
 //  = [{"Roll Title":" Sales Head","Date Added":"19/112022", "Roll Access":"All Access","View":"No. of closed accounts only","Rights/Permissions":"View and edit limited", "Phone Number":5678092354},{"Roll Title":"Admin","Date Added":"19/112022", "Roll Access":"E-mail only","View":"Audit only","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Technical","Date Added":"19/112022", "Roll Access":"All Access","View":"Inventory check only","Rights/Permissions":"View and edit all", "Phone Number":5678092354},{"Roll Title":"Marketting Manager","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"No. of open accounts only","Rights/Permissions":"View and edit all", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"E-mail only","View":"All metrics","Rights/Permissions":"View and edit limited", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},{"Roll Title":"Staff","Date Added":"19/112022", "Roll Access":"Mobile phone no. only","View":"Branch recon only ","Rights/Permissions":"View only", "Phone Number":5678092354},]
   displayedColumns1:string[] = ['Role Title','Date Added', 'Role Access',  'View',  'Rights/Permissions',]
   displayedColumns:string[] = [...this.displayedColumns1, 'action'];
   dataSource: any
   @ViewChild('content', { static: true }) content: ElementRef;
-  @ViewChild('MatPaginator', { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
    @ViewChild('Table') table: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -48,22 +48,33 @@ export class RolesComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute,
     // private cdr: ChangeDetectorRef,
-    private modalService: NgbModal,public dialog: MatDialog
+    private modalService: NgbModal,
     ) {
     this.dataSource = new MatTableDataSource();
   }
-  openPopup() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.backdropClass = 'dialog-backdrop';
-    dialogConfig.disableClose = true;
-    this.dialog.open(DialogComponent,dialogConfig);
-  }
+
   deleteRole(id:any){
    this.service.deleteRoleData(id).subscribe((res:any)=>{
   })
   // this.cdr.detectChanges();
   }
-  openDialog(content:any,element:any): void {
+  openDialogOfDelete(element:any){
+    const config: NgbModalOptions = {
+      backdrop:false,
+      keyboard: true,
+      centered: true,
+      size:'s,'
+      
+    };
+    const modalRef = this.modalService.open(DialogComponent,config);
+    modalRef.componentInstance.data =element
+    modalRef.result.then((result) => {
+      result?alert("yes go ahead and delete "):console.log(result)
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+  openDialogOfRead(content:any,element:any): void {
     this.poop_up.Roll_Title=element['Role Title']
     this.poop_up.Roll_Description=element['Description']
     this.poop_up.Roll_Access=element['Role Access']
@@ -74,6 +85,7 @@ export class RolesComponent implements OnInit{
       backdrop:false,
       keyboard: true,
       centered: true,
+      size:'sl'
       
     };
     const modalRef = this.modalService.open(content,config);
@@ -105,6 +117,20 @@ export class RolesComponent implements OnInit{
   // }
 
 
+  confirmationDialogVisible = false;
+
+  openConfirmationDialog() {
+    // confirm("Press a button!");
+    this.confirmationDialogVisible = true;
+  }
+
+  onConfirmationDialogConfirmed(confirmed: boolean) {
+    if (confirmed) {
+      // perform delete action
+    }
+    this.confirmationDialogVisible = false;
+  }
+
   ExportTOExcel()
   {
 
@@ -124,11 +150,12 @@ export class RolesComponent implements OnInit{
       res.forEach((obj: any) => renameKey(obj, 'RoleAccess', 'Role Access'));
       res.forEach((obj: any) => renameKey(obj, 'Rights', 'Rights/Permissions'));
       console.log(res)
-  this.data=res
-  this.dataSource = new MatTableDataSource(res);
-
+  // this.data=res
+  this.dataSource = new MatTableDataSource<rolesTableColumns>(res);
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
     })
-    this.dataSource.sort = this.sort;
+
   }
  
   ngOnChanges(){

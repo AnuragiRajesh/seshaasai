@@ -7,6 +7,8 @@ import { usersTableColumns } from 'src/app/_interfaces/appInterfaces';
 import * as XLSX from 'xlsx';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { DialogComponent } from 'src/app/dailog-box/dialog.component';
 
 
 @Component({
@@ -26,7 +28,7 @@ export class UsersComponent implements OnInit ,AfterViewInit{
   VOForm: FormGroup;
   pageSizes = [3, 5, 7];
   expandedElement: any;
-  constructor(private service: DataService,private router: Router
+  constructor(private service: DataService,private router: Router, private modalService: NgbModal,
 ) {
     
   }
@@ -54,28 +56,56 @@ export class UsersComponent implements OnInit ,AfterViewInit{
       res.forEach((obj: any) => renameKey(obj, 'BranchID', 'Branch ID'));
       res.forEach((obj: any) => renameKey(obj, 'Email', 'Email ID'));
       res.forEach((obj: any) => renameKey(obj, 'UserName', 'User'));
-      res.map((ele:any)=>{
-        // return 
-      })
+      // res.map((ele:any)=>{
+      //   // return 
+      // })
       console.log(res,"kkkkk")
 
       this.dataSource = new MatTableDataSource<usersTableColumns>(res);
       this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
 
     })
   }
   navigateToAdduser(){
     // this.Route.navigate(['user/addUser'])
   }
+
+
+  openDialogOfDelete(element:any){
+    const config: NgbModalOptions = {
+      backdrop:false,
+      keyboard: true,
+      centered: true,
+      size:'s,'
+      
+    };
+    const modalRef = this.modalService.open(DialogComponent,config);
+    modalRef.componentInstance.data =element
+    modalRef.result.then((result) => {
+      result?alert("yes go ahead and delete "):console.log(result)
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+
+
   editRow(element:any){
     // debugger
     console.log(element)
     this.router.navigate(['/home/userComponent/editUser'], {
       queryParams: element
     });}
+    deleteRow(element:any){
+      // console.log(element.Id)
+this.service.deleteUserApi(element.Id).subscribe((res:any)=>{
+  console.log(res,"response from user delete api ")
+})
+    }
  
   ngAfterViewInit(): void {
-    // this.dataSource.sort = this.sort;
     // this.dataSource.paginator = this.paginatorPageSize;
   }
 

@@ -63,9 +63,10 @@ button{
     background-color: #f5f5f5;
      border-bottom: 1px solid black;
        height: 3.5rem; width: 12rem;
-        text-align: right;
+        text-align: left;
            display: flex; 
            justify-content: left;
            padding: 1rem;
            align-items: center;
+           word-wrap: break-word;
 }

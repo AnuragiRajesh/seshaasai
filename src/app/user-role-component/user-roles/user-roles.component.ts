@@ -54,13 +54,12 @@ export class UserRolesComponent implements OnInit {
       console.log(res, "service is beeing called?")
       this.dataSource = new MatTableDataSource<userRolesTableColumns>(res);
       this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
     })
   }
  
-  // ngAfterViewInit(): void {
-  //   this.dataSource.sort = this.sort;
-  //   this.dataSource.paginator = this.paginator;
-  // }
+  
 }
 function renameKey(obj: any, oldKey: any, newKey: any) {
   obj[newKey] = obj[oldKey];

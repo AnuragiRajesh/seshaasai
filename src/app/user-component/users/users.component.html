@@ -14,7 +14,7 @@
 <hr>
 <div style=" display: flex;  justify-content: right;">
 
-    <button class="exportButton" mat-raised-button color="primary" (click)="ExportTOExcel()"  >Export as Excel</button></div>
+    <button class="exportButton mat-elevation-z8" mat-raised-button color="primary" (click)="ExportTOExcel()"  >Export as Excel</button></div>
     	<!-- <div>{{data[0]}}</div>  -->
         <div  class="example-container mat-elevation-z8" #Table   >
 	<mat-table   #table [dataSource]="dataSource" multiTemplateDataRows   matSort>
@@ -29,12 +29,12 @@
       <ng-container matColumnDef="action" >
           <mat-header-cell style="background-color: #F4F4F4;" *matHeaderCellDef > Delete/Edit </mat-header-cell>
           <mat-cell *matCellDef="let element">
-              <button  mat-icon-button class="matIconButton" (click)=" editRow(element)"
+              <button  mat-icon-button class="matIconButton" matTooltip="Edit" (click)=" editRow(element)"
               >
               <mat-icon>edit</mat-icon>
               
       </button>
-      <button   mat-icon-button  class="matIconButton"
+      <button   mat-icon-button  class="matIconButton" matTooltip="Delete"  (click)="openDialogOfDelete(element)"
       [class.expanded]="expandedElement == element"
       (click)="expandedElement = element">
       <mat-icon>delete</mat-icon>
@@ -51,7 +51,7 @@
 <div class="footerPaginator">
     <mat-paginator 
     #paginatorPageSize
-    pageSize="7"
+    pageSize="6"
     showFirstLastButtons
   ></mat-paginator>
   </div>

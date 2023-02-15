@@ -33,9 +33,10 @@ export class EditUserRoleComponent implements OnInit {
 
     this.route.queryParams.subscribe((res:any)=>{
       this.roleUserID=res.Id
-      this.user=res['User Name']
+      this.user= `${res['User Name']} | ${res["Branch ID"]}`
+
       // this.roleID=
-      this.role.setValue({  Role:res['Roll assigned']});
+      this.role.setValue({  Role:res['Roll assigned']});  
 console.log(res)
     })
 

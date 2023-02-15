@@ -1,0 +1,21 @@
+
+       <div class="modal-header">
+        <!-- <h4 class="modal-title">My Modal</h4> -->
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style=" text-align: center;"> <h4> are you sure you want to delete?</h4></div>
+      </div>
+             
+             <!-- <ng-template class="modal-main"  #content1 let-modal> -->
+       
+          
+               
+                
+              <div style=" display: flex; flex-direction: row; justify-content: center; gap: 2rem; margin: 10px; border-radius: 5px; ">
+                <button type="button" style=" padding: 5px 25px;"  (click)="modal.close(true)">OK</button>
+                <button type="button" style=" padding: 5px 20px;"  (click)="modal.dismiss()">Cancel</button>
+          </div>
+       

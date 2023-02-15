@@ -13,7 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   imports: [
     ReactiveFormsModule,
@@ -31,6 +31,7 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatTooltipModule,
     // MatTableDataSource,
 
 
@@ -50,6 +51,7 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatTooltipModule,
     // MatTableDataSource,
     NgMultiSelectDropDownModule,
 
