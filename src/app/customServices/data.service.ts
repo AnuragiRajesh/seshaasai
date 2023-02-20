@@ -67,9 +67,9 @@ export class DataService {
   postRoleData(params: any) {
     return this.http.post(`${this._Role_API}/AddRole`, params);
   }
-  updateRoleData(id: any, params: any) {
-    console.log(id, params, "jjjjj")
-    return this.http.put(`${this._Role_API}/04894d7c-efe3-4bfb-81e7-2464a55159a1`, params);
+  updateRoleData( params: any) {
+    console.log( params, "jjjjj")
+    return this.http.put(this._Role_API, params);
   }
   deleteRoleData(id: any) {
     return this.http.delete(`${this._Role_API}/${id}`);

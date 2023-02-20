@@ -20,18 +20,14 @@ export class EditRoleComponent implements OnInit {
   // public selectedViewAccess:string[]=[]
   // public selectedRightPermission:string[]=[]
 
-  public form: FormGroup;
+  public reactiveForm: FormGroup;
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private service: DataService,
 ) {
 
   }
-  //  = [
-  //   { item_id: 1, item_text: 'Mumbai' },
-  //   { item_id: 2, item_text: 'Bangalore' },
-  //   { item_id: 3, item_text: 'Pune' }
-  // ];
+
   ngOnInit(): void {
     
   
@@ -56,11 +52,6 @@ export class EditRoleComponent implements OnInit {
     ];
 
 
-    // this.selectedItems = [
-    //   'All Access' ,
-    //   "Mobile number access" ,
-    //   "E-mail only access" 
-    // ];
 
 
     this.dropdownSettings = {
@@ -73,16 +64,16 @@ export class EditRoleComponent implements OnInit {
     this.dropdownSettingsForView = {
       idField: 'item_id',
       textField: 'item_text',
-      // showSelectedItemsAtTop: 5,
-   
-      itemsShowLimit: 1,
+      itemsShowLimit:1,
+      // [enableSearch]="true",
+      allowSearchFilter: true,
     };
 
 
 
     this.route.queryParams.subscribe(params => {
       console.log(params,"hhh", params['Role Access']) 
-      this.form = this.formBuilder.group({
+      this.reactiveForm = this.formBuilder.group({
         Id: [params['Id'], Validators.required],
         Name: [params['Role Title'], Validators.required],
         RoleAccess:  [params['Role Access'], Validators.required],
@@ -92,7 +83,6 @@ export class EditRoleComponent implements OnInit {
   
       })
 
-// this.selectedRoleAccess.push(params['Role Access'])
 
 
     });
@@ -104,12 +94,39 @@ export class EditRoleComponent implements OnInit {
 
   }
 
+  get Name() {
+    return this.reactiveForm.get('Name')!;
+  }
 
+  get View() {
+    return this.reactiveForm.get('View')!;
+  }
+
+  get RoleAccess() {
+    return this.reactiveForm.get('RoleAccess')!;
+  }
+  get Rights() {
+    return this.reactiveForm.get('Rights')!;
+  }
+  get Description() {
+    return this.reactiveForm.get('Description')!;
+  }
   submitbutton() {
-    console.log(this.form.value, "haresshvvvcvvv")
-    this.service.updateRoleData(this.form.value.Id,this.form.value).subscribe((res:any)=>{
-        console.log(res,"response from the role post api")
-    })
+    console.log(this.reactiveForm.value, "haresshvvvcvvv")
+    for (const controlName of Object.keys(this.reactiveForm.controls)) {
+      const control = this.reactiveForm.controls[controlName];
+      control.markAsTouched();
+    }
+  
+    if (this.reactiveForm.valid) {
+      console.log(this.reactiveForm.value)
+     
+      this.service.updateRoleData(this.reactiveForm.value).subscribe((res:any)=>{
+          console.log(res,"response from the role post api")
+      })
+      
+    }
+
   }
 
 

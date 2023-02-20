@@ -11,7 +11,7 @@ button{
 }
 .inputBox {
     width: 220px;
-    height: 40px;
+    height: 35px;
     border-radius: 5px;
     text-decoration: none;
     border-color: #999999 !important;
@@ -39,9 +39,30 @@ button{
 
 
   .submitButton{
-    width: 200px; height: 40px; border-radius: 10px; border: 1px solid #43425D;
+    width: 220px; height: 40px; border-radius: 10px; border: 1px solid #43425D;
   }
 
 
+
+
+//   mat-form-field{
+//     // border: 1px solid black;
+//     // height: 40px;
+//     background-color: red
+//   }
+  mat-form-field {
+    height: 90%
+    // background-color: #1a6d05;
+  }
+
+//   mat-select{
+//     background-color: yellow;
+//   }
+//   mat-option{
+//     background-color: pink;
+//   }
+//   mat-autocomplete{
+//     background-color: #1a6d05;
+//   }
 
 

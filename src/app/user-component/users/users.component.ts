@@ -16,7 +16,7 @@ import { DialogComponent } from 'src/app/dailog-box/dialog.component';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit ,AfterViewInit{
+export class UsersComponent implements OnInit {
   data:any
   // = [{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Kizziz","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Manoj","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Kajal","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Pankaj","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Raju","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Vinod","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'},{"Name":"Harees","Date Added":"19/112022", "Region":"East","Branch ID":1000123,"Phone Number":8989674523,"Email ID":'garima.jain@outlook.com'}]
   displayedColumns1:string[] = ['User','Date Added', 'Region',  'Branch ID',  'Email ID','Phone Number',]
@@ -48,29 +48,9 @@ export class UsersComponent implements OnInit ,AfterViewInit{
   }
   
   ngOnInit(): void {
-    this.service.getUserData().subscribe((res:any)=>{
-      // console.log(res)
-      // res.forEach((obj: any) => renameKey(obj, 'LastName', 'lastName'));
-      res.forEach((obj: any) => renameKey(obj, 'PhoneNumber', 'Phone Number'));
-      res.forEach((obj: any) => renameKey(obj, 'Created_Date', 'Date Added'));
-      res.forEach((obj: any) => renameKey(obj, 'BranchID', 'Branch ID'));
-      res.forEach((obj: any) => renameKey(obj, 'Email', 'Email ID'));
-      res.forEach((obj: any) => renameKey(obj, 'UserName', 'User'));
-      // res.map((ele:any)=>{
-      //   // return 
-      // })
-      console.log(res,"kkkkk")
-
-      this.dataSource = new MatTableDataSource<usersTableColumns>(res);
-      this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-
-
-    })
+    this.getDataFromGetUserApi()
   }
-  navigateToAdduser(){
-    // this.Route.navigate(['user/addUser'])
-  }
+
 
 
   openDialogOfDelete(element:any){
@@ -84,7 +64,10 @@ export class UsersComponent implements OnInit ,AfterViewInit{
     const modalRef = this.modalService.open(DialogComponent,config);
     modalRef.componentInstance.data =element
     modalRef.result.then((result) => {
-      result?alert("yes go ahead and delete "):console.log(result)
+      result?this.service.deleteUserApi(element.Id).subscribe((res:any)=>{
+        this.getDataFromGetUserApi()
+        console.log(res)
+      }):console.log(result)
     }).catch((error) => {
       console.log(error);
     });
@@ -105,10 +88,21 @@ this.service.deleteUserApi(element.Id).subscribe((res:any)=>{
 })
     }
  
-  ngAfterViewInit(): void {
-    // this.dataSource.paginator = this.paginatorPageSize;
-  }
-
+getDataFromGetUserApi(){
+  this.service.getUserData().subscribe((res:any)=>{
+    res.forEach((obj: any) => renameKey(obj, 'PhoneNumber', 'Phone Number'));
+    res.forEach((obj: any) => renameKey(obj, 'Created_Date', 'Date Added'));
+    res.forEach((obj: any) => renameKey(obj, 'BranchID', 'Branch ID'));
+    res.forEach((obj: any) => renameKey(obj, 'Email', 'Email ID'));
+    res.forEach((obj: any) => renameKey(obj, 'UserName', 'User'));
+    this.dataSource = new MatTableDataSource<usersTableColumns>(res);
+    this.implementationOfPaginatorAndMatsort()
+  })
+}
+implementationOfPaginatorAndMatsort(){
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
+}
 
 }
 function renameKey(obj: any, oldKey: any, newKey: any) {

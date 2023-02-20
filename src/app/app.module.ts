@@ -28,6 +28,8 @@ import { EditUserRoleComponent } from './user-role-component/edit-user-role/edit
 import { EditUserComponent } from './user-component/edit-user/edit-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogComponent } from './dailog-box/dialog.component';
+import { CommonModule } from '@angular/common';
+import { FormValidatorDirective } from './form-validator.directive';
 // import { ConfirmDialogComponent } from './dialog-box/confirm-dialog/confirm-dialog.component';
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { DialogComponent } from './dailog-box/dialog.component';
     EditRoleComponent,
     EditUserRoleComponent,
     EditUserComponent,
+    FormValidatorDirective,
     // ConfirmDialogComponent
     
   ],
@@ -62,6 +65,7 @@ import { DialogComponent } from './dailog-box/dialog.component';
     HttpClientModule,
     MatDialogModule,
     NgbModalModule,
+    CommonModule,
     ReactiveFormsModule,
 
     

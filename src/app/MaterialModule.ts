@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule,} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { MatTableModule } from '@angular/material/table' ; 
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -25,6 +26,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTableModule ,
     MatDialogModule,
     NgMultiSelectDropDownModule.forRoot(),
+    NgSelectModule,
     CdkTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -53,6 +55,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatInputModule,
     MatTooltipModule,
     // MatTableDataSource,
+    NgSelectModule,
     NgMultiSelectDropDownModule,
 
   ]

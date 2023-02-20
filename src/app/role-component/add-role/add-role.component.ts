@@ -3,8 +3,14 @@ import { FormControl, FormBuilder, Validator, FormGroup, Validators } from '@ang
 import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DataService } from 'src/app/customServices/data.service';
-import { json } from 'stream/consumers';
-
+interface IUser {
+  Name: string;
+  lastName: string;
+  email: string;
+  region: string;
+  phone:number;
+  branch: boolean;
+}
 @Component({
   selector: 'app-add-role',
   templateUrl: './add-role.component.html',
@@ -18,7 +24,7 @@ export class AddRoleComponent implements OnInit {
   public rights: any
   public selectedItems:string[]
 
-  public form: FormGroup;
+  public reactiveForm: FormGroup;
   constructor(private formBuilder: FormBuilder,
     private service: DataService,
     private router: Router,) {
@@ -35,7 +41,6 @@ export class AddRoleComponent implements OnInit {
    'All Access' ,
      "Mobile number access" 
    , "Email access" 
-
     ];
     this.view = [
       "Audit",
@@ -43,7 +48,6 @@ export class AddRoleComponent implements OnInit {
       , 'Inventory check'
       , "No. of open account"
       , "No. of closed account"
-
     ];
     this.rights = [
      'View' ,
@@ -53,11 +57,6 @@ export class AddRoleComponent implements OnInit {
     ];
 
 
-    // this.selectedItems = [
-    //   'All Access' ,
-    //   "Mobile number access" ,
-    //   "E-mail only access" 
-    // ];
 
 
     this.dropdownSettings = {
@@ -71,44 +70,57 @@ export class AddRoleComponent implements OnInit {
       idField: 'item_id',
       textField: 'item_text',
       // showSelectedItemsAtTop: 5,
-   
       itemsShowLimit: 1,
     };
 
   }
   initForm() {
-    this.form = this.formBuilder.group({
-      Name: ['', Validators.required],
-      RoleAccess: ['', Validators.required],
-      View: ['', Validators.required],
-      Rights: ['', Validators.required],
-      Description: ['', Validators.required],
+    this.reactiveForm = this.formBuilder.group({
+      Name: [,  
+        Validators.required,
+       ],
+      RoleAccess: [, Validators.required],
+      View: [, Validators.required],
+      Rights: [, Validators.required],
+      Description: [, Validators.required],
 
     })
 
   }
+  get Name() {
+    return this.reactiveForm.get('Name')!;
+  }
 
+  get View() {
+    return this.reactiveForm.get('View')!;
+  }
+
+  get RoleAccess() {
+    return this.reactiveForm.get('RoleAccess')!;
+  }
+  get Rights() {
+    return this.reactiveForm.get('Rights')!;
+  }
+  get Description() {
+    return this.reactiveForm.get('Description')!;
+  }
   submitbutton() {
-    console.log(this.form.value, "haresshvvvcvvv")
-    this.service.postRoleData(this.form.value).subscribe((res:any)=>{
-        console.log(res,"response from the role post api")
-    })
+
+    for (const controlName of Object.keys(this.reactiveForm.controls)) {
+      const control = this.reactiveForm.controls[controlName];
+      control.markAsTouched();
+    }
+  
+    if (this.reactiveForm.valid) {
+      console.log(this.reactiveForm.value)
+      this.service.postRoleData(this.reactiveForm.value).subscribe((res:any)=>{
+          console.log(res,"response from the role post api")
+      })
+      
+    }
   }
-  // onUnSelectAllOfBranch() {
-  //   this.form.value.branch_Id = ''
-  //   // this.form.reset()
-  // }
-  // onItemSelectOfBranch(items: any) {
+  
 
-  // } onItemDeSelectOfBranch(items: any) {
-  //   if (this.form.value.branch_Id.length == 0) {
-  //     this.form.value.branch_Id = ''
-
-  //   }
-  // }
-  // onSelectAllOfBranch(items: any) {
-
-  // }
 
 
 

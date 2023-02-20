@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~bootstrap/dist/css/bootstrap.css";
+// @import "~ng-multiselect-dropdown/style.css";
 // @import "~bootstrap/dist/css/bootstrap.css";
 .exportButton{
     width: 120px; height: 35px; border-radius: 10px; border: 1px solid #43425D; margin-bottom: 15px;
@@ -48,3 +51,54 @@
 // tr.mat-mdc-row:hover {
 //     background-color: lightgray;
 // }
+
+
+
+
+
+
+button{
+    border: none;
+}
+
+
+.mainMultiselect{
+    top: 91px;
+    left: 1113px;
+    width: 220px;
+    height: 40px;
+}
+.inputBox {
+    width: 220px;
+    height: 35px;
+    border-radius: 5px;
+    text-decoration: none;
+    border-color: #999999 !important;
+    border: solid 1.5PX;
+}
+
+
+@media only screen and (max-width: 1115px ) {
+    body {
+        .mainMultiselect{
+            width: 140px;
+        }
+
+
+        .inputBox {
+            width: 140px;
+          
+        }
+
+        .submitButton{
+            width: 140px;
+        }
+    }
+  }
+
+
+  .submitButton{
+    width: 220px; height: 40px; border-radius: 10px; border: 1px solid #43425D;
+  }
+
+

@@ -46,8 +46,6 @@ export class RolesComponent implements OnInit{
  
   constructor(private service: DataService,
     private router: Router,
-    private route: ActivatedRoute,
-    // private cdr: ChangeDetectorRef,
     private modalService: NgbModal,
     ) {
     this.dataSource = new MatTableDataSource();
@@ -69,7 +67,10 @@ export class RolesComponent implements OnInit{
     const modalRef = this.modalService.open(DialogComponent,config);
     modalRef.componentInstance.data =element
     modalRef.result.then((result) => {
-      result?alert("yes go ahead and delete "):console.log(result)
+      result?this.service.deleteRoleData(element.Id).subscribe((res:any)=>{
+        this.getDataFromGetRoleApi()
+        console.log(res,"response from delete role api")
+      }):console.log(result)
     }).catch((error) => {
       console.log(error);
     });
@@ -117,19 +118,8 @@ export class RolesComponent implements OnInit{
   // }
 
 
-  confirmationDialogVisible = false;
 
-  openConfirmationDialog() {
-    // confirm("Press a button!");
-    this.confirmationDialogVisible = true;
-  }
 
-  onConfirmationDialogConfirmed(confirmed: boolean) {
-    if (confirmed) {
-      // perform delete action
-    }
-    this.confirmationDialogVisible = false;
-  }
 
   ExportTOExcel()
   {
@@ -143,30 +133,31 @@ export class RolesComponent implements OnInit{
     
   }
   ngOnInit(): void {
-    this.service.getRoleData().subscribe((res:any)=>{
-      console.log(res,"hareesh")
-      res.forEach((obj: any) => renameKey(obj, 'Name', 'Role Title'));
-      res.forEach((obj: any) => renameKey(obj, 'Created_Date', 'Date Added'));
-      res.forEach((obj: any) => renameKey(obj, 'RoleAccess', 'Role Access'));
-      res.forEach((obj: any) => renameKey(obj, 'Rights', 'Rights/Permissions'));
-      console.log(res)
-  // this.data=res
-  this.dataSource = new MatTableDataSource<rolesTableColumns>(res);
-  this.dataSource.paginator = this.paginator;
-  this.dataSource.sort = this.sort;
-    })
+    this.getDataFromGetRoleApi()
 
   }
  
-  ngOnChanges(){
-    this.dataSource = new MatTableDataSource(this.data);
-    this.dataSource.sort = this.sort;
-  }
-  // ngAfterViewInit(): void {
-  //   this.dataSource.sort = this.sort;
-  //   this.dataSource.paginator = this.paginator;
-  //   this.content.nativeElement.prependTo(document.body);
-  // }
+
+
+getDataFromGetRoleApi(){
+  this.service.getRoleData().subscribe((res:any)=>{
+    console.log(res,"hareesh")
+    res.forEach((obj: any) => renameKey(obj, 'Name', 'Role Title'));
+    res.forEach((obj: any) => renameKey(obj, 'Created_Date', 'Date Added'));
+    res.forEach((obj: any) => renameKey(obj, 'RoleAccess', 'Role Access'));
+    res.forEach((obj: any) => renameKey(obj, 'Rights', 'Rights/Permissions'));
+    console.log(res)
+this.dataSource = new MatTableDataSource<rolesTableColumns>(res);
+this.implementationOfPaginatorAndMatsort()
+  })
+}
+implementationOfPaginatorAndMatsort(){
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
+}
+
+
+
 }
 
 function renameKey(obj: any, oldKey: any, newKey: any) {
